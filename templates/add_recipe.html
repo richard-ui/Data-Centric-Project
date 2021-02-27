@@ -4,18 +4,36 @@
 
      <h1>Add Recipe</h1>
 
-    <div class="row">
-        <form class="col s12">
+     <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="">
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-user-circle prefix">account_circle</i>
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">First Name</label>
+                <i class="fas fa-pencil-alt prefix"></i>
+                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
+                    type="text" class="validate" required>
+                <label for="recipe_name">Recipe Name:</label>
             </div>
+        </div>
+
+        <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-user-circle prefix">account_circle</i>
-                <input id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Telephone</label>
+                <i class="fas fa-concierge-bell prefix"></i>
+                <input id="cuisine" name="cuisine" minlength="5" maxlength="50"
+                    class="validate" required>
+                <label for="cuisine">Cuisine:</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-utensils prefix"></i>
+                <select id="ingredient_name" name="ingredient_name" class="validate" multiple>
+                    <option value="" disabled selected>Choose your Ingredients:</option>
+                    {% for ingredient in ingredients %}
+                        <option value="{{ ingredient.ingredient_name }}">{{ ingredient.ingredient_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="ingredient_name">Ingredients:</label>
             </div>
         </div>
         </form>
