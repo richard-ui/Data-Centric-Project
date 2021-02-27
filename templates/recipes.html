@@ -2,27 +2,33 @@
 {% block content %}
 
     <h1>Recipe Page</h1>
+    
+    <ul class="collapsible popout">
+         {% for recipe in recipes %}
+            <li>
+                <div class="collapsible-header white-text light-blue darken-4 text-shadow">
+                 <div class="col s3">
+                    <i class="fas fa-caret-down"></i>
+                    {% if session.user|lower == recipe.created_by|lower %}
+                        <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="btn-small red accent-4">Delete</a>
+                        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small light-blue lighten-1">Edit</a>
+                    {% endif %}
+                </div>
 
-    {% for recipe in recipes %}
-        {{ recipe.food_name }}<br>
-        {{ recipe.cuisine }}<br>
-        <br>
-    {% endfor %}
+                <i class="fas fa-caret-down"></i>
+                 <strong>{{ recipe.recipe_name }}</strong>
+                </div>
 
-     <ul class="collapsible popout">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
+                <div class="collapsible-body">
+                <strong>{{ recipe.prep_time }}</strong>
+                <p>{{ recipe.ingredients }}</p>
+                </div>
+                
+
+
+            </li>
+        {% endfor %}
+    </ul>
         
 
 {% endblock %}
