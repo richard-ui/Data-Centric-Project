@@ -159,6 +159,26 @@ def add_cuisine():
     return render_template("add_cuisine.html")
 
 
+@app.route("/edit_cuisine/<cuisine_id>", methods=["GET", "POST"])
+def edit_cuisine(cuisine_id):
+    if request.method == "POST":
+        edit_cuisine = {
+            "cuisine_name": request.form.get("cuisine_name")
+        }
+        mongo.db.cuisines.update({"_id": ObjectId(cuisine_id)}, edit_cuisine)
+        flash("Cuisine Successfully Updated")
+        return redirect(url_for("get_cuisines"))
+
+    cuisine = mongo.db.cuisines.find_one({"_id": ObjectId(cuisine_id)})
+    return render_template("edit_cuisine.html", cuisine=cuisine)
+
+
+@app.route("/delete_cuisine/<cuisine_id>")
+def delete_cuisine(cuisine_id):
+    mongo.db.cuisines.remove({"_id": ObjectId(cuisine_id)})
+    flash("Cuisine Successfully Deleted")
+    return redirect(url_for("get_cuisines"))
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
