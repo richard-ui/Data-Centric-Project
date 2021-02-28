@@ -129,7 +129,8 @@ def edit_recipe(recipe_id):
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
-    return render_template("edit_recipe.html", recipe=recipe,  cuisines=cuisines)
+    return render_template("edit_recipe.html", recipe=recipe,
+    cuisines=cuisines)
 
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -144,6 +145,18 @@ def get_cuisines():
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_name", 1))
     return render_template("cuisines.html", cuisines=cuisines)
 
+
+@app.route("/add_cuisine", methods=["GET", "POST"])
+def add_cuisine():
+    if request.method == "POST":
+        add_cuisine = {
+            "cuisine_name": request.form.get("cuisine_name")
+        }
+        mongo.db.cuisines.insert_one(add_cuisine)
+        flash("New Cuisine Added")
+        return redirect(url_for("get_cuisines"))
+
+    return render_template("add_cuisine.html")
 
 
 if __name__ == "__main__":
