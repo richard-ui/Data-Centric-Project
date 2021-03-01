@@ -5,35 +5,77 @@
      <h1>Add Recipe</h1>
 
      <div class="row card-panel grey lighten-5">
-        <form class="col s12" method="POST" action="">
+        <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}">
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-pencil-alt prefix"></i>
-                <input id="recipe_name" name="recipe_name" minlength="5" maxlength="50"
+                <i class="fas fa-book prefix"></i>
+                <input id="recipe_name" name="recipe_name" minlength="4" maxlength="50"
                     type="text" class="validate" required>
-                <label for="recipe_name">Recipe Name:</label>
+                <label for="recipe_name">Recipe name:</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-pizza-slice prefix"></i>
+                <input id="ingredients" name="ingredients" minlength="4" maxlength="50"
+                    type="text" class="validate" required>
+
+                <div id="dynamicInput"></div>
+                <label for="ingredients">Ingredient 1:</label>
+                <a class="waves-effect waves-light btn" onclick="addIngredient('dynamicInput');">
+                    Add Another Ingredient:
+                </a>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-blender prefix"></i>
+                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                    required>
+                <label for="prep_time">Prep Time:</label>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-wrench prefix"></i>
+                <input id="prep_steps" type="text" name="prep_steps" minlength="3" maxlength="300" class="validate" required>
+                <div id="dynamicInputTwo"></div>
+                <label for="prep_steps">Step 1</label>
+                <a class="waves-effect waves-light btn" onclick="addStep('dynamicInputTwo');">Add Another Step</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-bacon prefix"></i>
+                <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate"
+                    placeholder="eg. 1 hr and 15 mins" required>
+                <label for="cook_time">Cook Time:</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-concierge-bell prefix"></i>
-                <input id="cuisine" name="cuisine" minlength="5" maxlength="50"
-                    class="validate" required>
-                <label for="cuisine">Cuisine:</label>
+                <select id="cuisine_name" name="cuisine_name" class="validate">
+                    <option value="" disabled selected> -- </option>
+                    {% for cuisine in cuisines %}
+                        <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="cuisine_name">Cuisine:</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-utensils prefix"></i>
-                <select id="ingredient_name" name="ingredient_name" class="validate" multiple>
-                    <option value="" disabled selected>Choose your Ingredients:</option>
-                    {% for ingredient in ingredients %}
-                        <option value="{{ ingredient.ingredient_name }}">{{ ingredient.ingredient_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="ingredient_name">Ingredients:</label>
+                <a href="{{ url_for('get_recipes') }}" class="waves-effect waves-light btn button-style">Cancel</a>
+                <button class="btn waves-effect waves-light" type="submit">Submit
+                    <i class="fas fa-chevron-circle-right"></i>
+                </button>
             </div>
         </div>
         </form>
