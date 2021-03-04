@@ -97,11 +97,16 @@ def logout():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
+    recipes = list(mongo.db.recipes.find())
     if session["user"]:
-        return render_template("profile.html", username=username)
+        for recipe in recipes:
+            try:
+                recipe["user_id"] = mongo.db.users.find_one(
+                    {"_id": recipe["user_id"]})["username"]
+            except:
+                pass
+        return render_template(
+            "profile.html", username=username.capitalize(), recipes=recipes)
 
     return redirect(url_for("login"))
 
@@ -109,12 +114,16 @@ def profile(username):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        recipe = {
+        new_recipe = {
             "recipe_name": request.form.get("recipe_name"),
-            "ingredients": request.form.get("ingredient"),
+            "ingredients": request.form.getlist("ingredients"),
+            "prep_time": request.form.get("prep_time"),
+            "prep_steps": request.form.getlist("prep_steps"),
+            "cook_time": request.form.get("cook_time"),
+            "cuisine_name": request.form.get("cuisine_name"),
             "created_by": session["user"]
         }
-        mongo.db.recipes.insert_one(recipe)
+        mongo.db.recipes.insert_one(new_recipe)
         flash("Recipe Successfully Added!")
         return redirect(url_for("get_recipes"))
 
@@ -125,19 +134,22 @@ def add_recipe():
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
-        submit = {
+        update_recipe = {
             "recipe_name": request.form.get("recipe_name"),
-            "ingredients": request.form.get("ingredient"),
+            "ingredients": request.form.getlist("ingredients"),
+            "prep_time": request.form.get("prep_time"),
+            "prep_steps": request.form.getlist("prep_steps"),
+            "cook_time": request.form.get("cook_time"),
+            "cuisine_name": request.form.get("cuisine_name"),
             "created_by": session["user"]
         }
 
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, update_recipe)
         flash("Recipe Successfully Updated")
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
-    return render_template("edit_recipe.html", recipe=recipe,
-    cuisines=cuisines)
+    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
 
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -191,3 +203,4 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
+# Remember to change debug to False before submitting project
