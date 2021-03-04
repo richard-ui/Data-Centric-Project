@@ -37,9 +37,45 @@ searched, viewed, added, deleted and updated.
 
 - As a returning user I want to be able to search a recipe from an input box and see suggestions depending on which letters I type. 
 
+### Admin goals: 
+
+- As an Admin, I want recipes added via the site to be stored in the correct format in the database 
+
+- As an Admin, I want to be able to see who has added each recipe. 
+
 ## Design
 
 1. Colour Scheme
 - The two main colours used on the site are dark blue and white. Using a dark and white color together contrasted nicely with the flow of the page.
+
 2. Typography
 - The 'Epilogue' font is the main font used throughout the website with Sans Serif as the fallback font in case for any reason the font is not supported by the browser.
+
+## Wireframes
+
+- Computer Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/MapPage.pdf) 
+
+- Mobile Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/Mobile.pdf)
+
+## Technologies Used
+
+1. Bootstrap 4.5
+- Bootstrap is a CSS framework and used throughly throughout the website. The main target of using BootStrap within my site was to make it easier
+making the site responsive on mobile devices.
+2. Hover.css:
+- Hover.css was used added in the head tag. This was used for implementing a cool looking hover effect when hovering over navbar links.
+3. Google Fonts:
+- Google fonts were used to import the 'Epilogue' font into the style.css file which is used on all pages throughout the project.
+4. Font Awesome:
+- Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
+5. jQuery:
+- jQuery is a feature of bootstrap to make the navbar responsive in Javascript.
+6. Git
+- Git was used for version control by utilizing the Gitpod terminal and initialising commands.
+7. GitHub:
+- GitHub is used to store the projects code after being commited from Gitpod.
+8. Gitpod
+- Gitpod is a Program that contained the project workspace and was used to develop and view the html/css inside it.
+9. Balsamiq:
+- Balsamiq was used to create the wireframes during the design process.
+The Technologies that were used were new and updated versions of HTML and CSS.
