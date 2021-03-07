@@ -1,0 +1,17 @@
+.modal {
+  left: 0;
+  right: 0;
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 40%;
+  width: 35%;
+  will-change: top, opacity;
+}
+
+body{
+    background-color: white;
+    font-family: 'Verdana', Times, serif;
+}
+::placeholder { /* Most modern browsers support this now. */
+   color:    #909;
+}
