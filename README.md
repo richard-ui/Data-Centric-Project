@@ -1,4 +1,4 @@
-![Rick's Recipe's](ttps://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+![Rick's Recipe's](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 # Data Centric Project
 
@@ -6,7 +6,7 @@
 
 - Link to Project - [View](https://richard-ui.github.io/Data-Centric-project/)
 
-![All_Devices](/static/img/home-bg.jpg)
+![All_Devices](/static/img/big_chief.jpg)
 
 ## Brief Introduction to the Project
 
@@ -49,7 +49,7 @@ searched, viewed, added, deleted and updated.
 - The two main colours used on the site are dark blue and white. Using a dark and white color together contrasted nicely with the flow of the page.
 
 2. Typography
-- The 'Epilogue' font is the main font used throughout the website with Sans Serif as the fallback font in case for any reason the font is not supported by the browser.
+- The 'Verdana' font is the main font used throughout the website with Times and Serif as the fallback fonts in case for any reason the font is not supported by the browser.
 
 ## Wireframes
 
@@ -60,22 +60,56 @@ searched, viewed, added, deleted and updated.
 ## Technologies Used
 
 1. Bootstrap 4.5
-- Bootstrap is a CSS framework and used throughly throughout the website. The main target of using BootStrap within my site was to make it easier
-making the site responsive on mobile devices.
-2. Hover.css:
-- Hover.css was used added in the head tag. This was used for implementing a cool looking hover effect when hovering over navbar links.
-3. Google Fonts:
-- Google fonts were used to import the 'Epilogue' font into the style.css file which is used on all pages throughout the project.
-4. Font Awesome:
-- Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
-5. jQuery:
-- jQuery is a feature of bootstrap to make the navbar responsive in Javascript.
-6. Git
-- Git was used for version control by utilizing the Gitpod terminal and initialising commands.
-7. GitHub:
-- GitHub is used to store the projects code after being commited from Gitpod.
-8. Gitpod
-- Gitpod is a Program that contained the project workspace and was used to develop and view the html/css inside it.
-9. Balsamiq:
-- Balsamiq was used to create the wireframes during the design process.
-The Technologies that were used were new and updated versions of HTML and CSS.
+2. Google Chrome
+3. Materialize 
+4. JavaScript 
+5. Font Awesome
+6. jQuery
+7. Git
+8. GitHub
+9. Gitpod
+10. Balsamiq
+11. Python and Python3
+12. Flask
+13. MongoDB
+14. Heroku
+15. Jinja
+
+## Features
+| Feature  | Details |
+| ------------- | ------------- |
+| Register  | The User can create an account which will be saved to the database and used to login for future use.   |
+| Login  | The user can log into their own account with personalised features.  |
+| Log out  | There is a log out functionality on the page - this is especially important for users of a shared device.   |
+| Add recipe   | Users can contribute to the site via the add recipe form.  |
+| Edit recipe form | Users are able to edit their own recipes. An important note here is that users can only edit their own recipes.   |
+| Delete recipe   | Users are able to delete their own recipes. As above, this can only be done with the user's own recipes.  |
+| Search function   | The users are able to search the recipe database by ingredient and recipe name. This function is available whether a user is logged in/registered or not.  |
+
+## Bugs
+
+## Testing
+
+### User Testing
+
+### Further Testing
+
+## Deployment
+
+## Content
+- Images and BBC good food website
+
+## Credits
+- code, stack overflow
+
+## Acknowledgements
+- Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.
+- My Mentor provided me with help and provided me access to Holly’s repository to view. This allowed me to locate the issues in my code and improve functionality that I may have been struggling with.
+
+ My friends and family who helped to test the site and to add recipes 
+
+- Girlfriend - Alexandra Connolly 
+
+- Father – Gary Jones 
+
+- Friend – Ashley Wilson 
