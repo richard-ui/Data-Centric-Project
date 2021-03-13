@@ -16,9 +16,41 @@
                         {% endfor %}
                       </datalist>          
                 </div>
+
                 <div class="col s12 m4">
                     <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">
-                        <i class="fas fa-trash-restore"></i> Reset
+                        <i class="fas fa-sync prefix"></i> Reset
+                    </a>
+
+                    <button type="submit" class="light-blue darken-1 btn text-shadow">
+                        <i class="fas fa-search left"></i> Search
+                    </button>
+
+       
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row card-panel grey lighten-5">
+        <form action="{{ url_for('search_by_cuisine') }}" method="post" class="col s12">
+            <div class="row">    
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-concierge-bell prefix"></i>
+                        <select id="cuisine_name" name="cuisine_name" class="validate">
+                            <option value="" disabled selected> -- </option>
+                            {% for cuisine in cuisines %}
+                                <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="cuisine_name">Search By Cuisine:</label>
+                    </div>
+                </div>
+
+                <div class="col s12 m6">
+                    <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">
+                        <i class="fas fa-sync prefix"></i> Reset
                     </a>
 
                     <button type="submit" class="light-blue darken-1 btn text-shadow">
@@ -49,10 +81,12 @@
 
                 <div class="row">
                     <div class="col m6">
-                        <h6>Prep Time: {{ recipe.prep_time }} Minutes</h6>
+                        <div class="times_title">Prep Time:</div>
+                        <div class="times">{{ recipe.prep_time }} Minutes</div>
                     </div>
                     <div class="col m6">
-                        <h6>Cook Time: {{ recipe.cook_time }} Minutes</h6>
+                        <div class="times_title">Cook Time:</div>
+                        <div class="times">{{ recipe.cook_time }} Minutes</div>
                     </div>
                 </div>
 

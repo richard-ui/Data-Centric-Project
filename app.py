@@ -30,29 +30,6 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def upload_file():
-    # Output will be blank if user_file key not found on submission
-    output = ""
-
-    if "user_file" not in request.files:
-
-        return output
-
-    # If the key is in the object, save it in file variable
-    file = request.files["user_file"]
-
-    # Check the filename, if it's blank, leave it blank
-    if file.filename == "":
-
-        return output
-
-    # Check that there is a file and that it has an allowed filetype
-    if file:
-        file.filename = secure_filename(file.filename)
-
-    return output
-
-
 def upload_image():
     if 'file' not in request.files:
         flash('No file part')
@@ -80,51 +57,32 @@ def upload_image():
 @app.route("/get_recipes")
 def get_recipes():
     recipes = list(mongo.db.recipes.find())
+    cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
     for recipe in recipes:
         try:
             recipe["user_id"] = mongo.db.users.find_one(
                 {"_id": recipe["user_id"]})["username"]
         except:
             pass
-    return render_template("recipes.html", recipes=recipes)
-
-
-@app.route("/upload_form")
-def upload_form():
-    return render_template("upload.html")
-
-
-@app.route('/upload_form', methods=['POST'])
-def upload_image1():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file = request.files['file']
-    if file.filename == '':
-        flash('No image selected for uploading')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # print('upload_image filename: ' + filename)
-        flash('Image successfully uploaded and displayed below')
-        return render_template('upload.html', filename=filename)
-    else:
-        flash('Allowed image types are -> png, jpg, jpeg, gif')
-        return redirect(request.url)
-
-
-@app.route('/display/<filename>')
-def display_image(filename):
-    # print('display_image filename: ' + filename)
-    return redirect(url_for('static', filename='img/' + filename), code=301)
+    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
 
 
 @app.route("/search_recipe", methods=["GET", "POST"])
 def search_recipe():
     query = request.form.get("query")
+    cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
+
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipes=recipes)
+    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
+
+
+@app.route("/search_by_cuisine", methods=["GET", "POST"])
+def search_by_cuisine():
+    query_cuisine = request.form.get("cuisine_name")
+    cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
+
+    recipes = list(mongo.db.recipes.find({"$text": {"$search": query_cuisine}}))
+    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -210,9 +168,6 @@ def profile(username):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-        # image_file = request.files['user_file']
-        # image_file.save(secure_filename(image_file.filename))
-        # image_file.filename
 
         user = mongo.db.users.find_one({"username": session["user"]})
         new_recipe = {
@@ -242,6 +197,7 @@ def edit_recipe(recipe_id):
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.getlist("ingredients"),
             "prep_time": request.form.get("prep_time"),
+            "file": request.form.get("file"),
             "prep_steps": request.form.getlist("prep_steps"),
             "cook_time": request.form.get("cook_time"),
             "cuisine_name": request.form.get("cuisine_name"),
