@@ -8,38 +8,100 @@
         <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
         <div class="row">
             <div class="input-field col s12">
-                <i class="fas fa-pizza-slice prefix"></i>
-                <input id="food_name" name="food_name" minlength="3" maxlength="50"
-                    type="text" class="validate" required>
+                <i class="fas fa-book prefix"></i>
+                <input id="recipe_name" name="recipe_name" minlength="3" maxlength="50"
+                    value="{{ recipe.recipe_name }}" type="text" class="validate" required>
                 <label for="recipe_name">Recipe Name:</label>
+            </div>
+        </div>
+
+         <!-- loop through ingredient's list -->
+
+        {% for ingredient in recipe.ingredients %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-pizza-slice prefix"></i>
+                    <input id="ingredients" name="ingredients" minlength="4" maxlength="50"
+                        value="{{ ingredient }}" type="text" class="validate" required>
+        {% endfor %}
+                <div id="dynamicInput"></div>
+                <label for="ingredients">Ingredient 1:</label>
+                <a class="waves-effect waves-light btn" onclick="addIngredient('dynamicInput');">
+                    Add Another Ingredient:
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-blender prefix"></i>
+                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 20 min"
+                    value="{{ recipe.prep_time }}" required>
+                <label for="prep_time">Prep Time:</label>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-image prefix"></i>
+                <input id="file" type="text" name="file" class="validate" value="{{ recipe.file }}"
+                    required />
+                <label for="file">Image</label>
+            </div>
+        </div>
+        
+
+        <!-- loop through step's list -->
+
+        {% for prep_step in recipe.prep_steps %}
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-list-ol prefix"></i>
+                <input id="prep_steps" name="prep_steps" minlength="4" maxlength="50"
+                    value="{{ prep_step }}" type="text" class="validate" required>
+        {% endfor %}
+                <div id="dynamicInputTwo"></div>
+                <label for="prep_steps">Ingredient 1:</label>
+                <a class="waves-effect waves-light btn" onclick="addStep('dynamicInputTwo');">
+                    Add Another step:
+                </a>
+            </div>
+        </div>
+
+         <div class="row">
+            <div class="input-field col s12">
+                <i class="fas fa-clock prefix"></i>
+                <input id="cook_time" type="text" name="cook_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                    value="{{ recipe.cook_time }}" required>
+                <label for="cook_time">Cook Time</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
                 <i class="fas fa-concierge-bell prefix"></i>
-                <input id="cuisine" name="cuisine" minlength="4" maxlength="50"
-                    type="text" class="validate" required>
-                <label for="cuisine">Cuisine:</label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="fas fa-utensils prefix"></i>
-                <select id="ingredient_name" name="ingredient_name" class="validate" multiple>
-                    <option value="" disabled selected> -- </option>
-                    {% for ingredient in ingredients %}
-                        <option value="{{ ingredient.ingredient_name }}">{{ ingredient.ingredient_name }}</option>
+                <select id="cuisine_name" name="cuisine_name" class="validate">
+                    <option value="" disabled> Choose Cuisine: </option>
+                    {% for cuisine in cuisines %}
+                        {% if cuisine.cuisine_name == recipe.cuisine_name %}
+                            <option value="{{ cuisine.cuisine_name }}" selected>{{ cuisine.cuisine_name }}</option>
+                        {% else %}
+                            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
-                <label for="ingredient_name">Ingredients:</label>
+                <label for="cuisine_name">Cuisine:</label>
             </div>
         </div>
 
         <div class="row">
             <div class="input-field col s12">
-                <button class="btn waves-effect waves-light" type="submit">Edit Recipe
+                <!-- cancel button -->
+                <a href="{{ url_for('get_recipes') }}" class="btn waves-effect red waves-light">
+                    Cancel <i class="fas fa-times-circle right"></i>
+                </a>
+
+                <button class="btn waves-effect waves-light" type="submit">Confirm Edit
                     <i class="fas fa-chevron-circle-right"></i>
                 </button>
             </div>
