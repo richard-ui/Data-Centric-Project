@@ -5,16 +5,16 @@
 
     <div class="row card-panel grey lighten-5">
         <form action="{{ url_for('search_recipe') }}" method="post" class="col s12">
-            <div class="row valign-wrapper center-align">
-                <div class="input-field search_input col s12 m8">
-                    <i class="fas fa-search prefix "></i>
+            <div class="row center-align">
+                <div class="input-field search_input col s12 m7">
+                    <i class="fas fa-search prefix"></i>
                      <input list="recipe_names" placeholder="Search Recipe..." id="query" name="query" />
                       
                      <datalist id="recipe_names">
                         {% for recipe in recipes %}
                         <option value="{{ recipe.recipe_name }}"></option>
                         {% endfor %}
-                      </datalist>          
+                      </datalist>         
                 </div>
 
                 <div class="col s12 m4">
@@ -25,8 +25,6 @@
                     <button type="submit" class="light-blue darken-1 btn text-shadow">
                         <i class="fas fa-search left"></i> Search
                     </button>
-
-       
                 </div>
             </div>
         </form>
@@ -36,7 +34,7 @@
         <form action="{{ url_for('search_by_cuisine') }}" method="post" class="col s12">
             <div class="row">    
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m7">
                         <i class="fas fa-concierge-bell prefix"></i>
                         <select id="cuisine_name" name="cuisine_name" class="validate">
                             <option value="" disabled selected> -- </option>
@@ -46,18 +44,17 @@
                         </select>
                         <label for="cuisine_name">Search By Cuisine:</label>
                     </div>
-                </div>
 
-                <div class="col s12 m6">
-                    <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">
-                        <i class="fas fa-sync prefix"></i> Reset
-                    </a>
+                    <div class="col s12 offset-s2 m4">
+                        <a href="{{ url_for('get_recipes') }}" class="red btn text-shadow">
+                            <i class="fas fa-sync prefix"></i> Reset
+                        </a>
 
-                    <button type="submit" class="light-blue darken-1 btn text-shadow">
-                        <i class="fas fa-search left"></i> Search
-                    </button>
+                        <button type="submit" class="light-blue darken-1 btn text-shadow">
+                            <i class="fas fa-search left"></i> Search
+                        </button>
+                    </div>
 
-       
                 </div>
             </div>
         </form>
@@ -66,25 +63,25 @@
     {% if recipes|length > 0 %}
          {% for recipe in recipes %}
          
-         <div class="card-panel grey lighten-5">
+         <div class="card-panel yellow lighten-2">
              <form>
              <fieldset>
              <legend>{{ recipe.recipe_name }}</legend>
                 <div class="row">
-                     <div class="col s12 m4">
+                     <div class="col s12 offset-s1 m6">
                         <h5>Recipe made By:</h5> '<b>{{ recipe.created_by }}</b>'<br>   
                     </div>
-                     <div class="col s12 m4">
+                     <div class="col s12 offset-s1 m4">
                         <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}"> 
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col m6">
+                    <div class="col s12 offset-s1 m6">
                         <div class="times_title">Prep Time:</div>
                         <div class="times">{{ recipe.prep_time }} Minutes</div>
                     </div>
-                    <div class="col m6">
+                    <div class="col s12 offset-s1 m6">
                         <div class="times_title">Cook Time:</div>
                         <div class="times">{{ recipe.cook_time }} Minutes</div>
                     </div>
