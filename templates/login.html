@@ -1,29 +1,32 @@
-% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 
     <h3 class="center-align">Login</h3>
 
     <div class="row">
-        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-            <div class="card-panel blue darken-2">
+        <form class="col s12 m6" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel yellow lighten-2">
+
                 <!-- username -->
                 <div class="row">
-					<div class="input-field col s12">
+					<div class="input-field col s12 m6">
 						<i class="fas fa-user-cog prefix white-text text-darken-2"></i>
-						<input id="user" name="user" type="text" minlength="5"
+						<input id="username" name="username" type="text" minlength="5"
                             maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" class="validate" required>
-						<label for="user">Username</label>
+						<label for="username">Username:</label>
 					</div>
                 </div>
-                <!-- passowrd -->
+
+                <!-- password -->
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 m6">
 						<i class="fas fa-user-lock prefix white-text text-darken-2"></i>
-                        <input id="pass" name="pass" type="password" minlength="5"
+                        <input id="password" name="password" type="password" minlength="5"
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
-                        <label for="pass">Password</label>
+                        <label for="password">Password:</label>
                     </div>
                 </div>
+
                 <!-- register -->
                 <div class="row">
                     <button type="submit" class="col s12 btn-large white-text text-darken-2">
