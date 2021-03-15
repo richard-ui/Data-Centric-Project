@@ -10,8 +10,52 @@
 
 body{
     background-color: white;
-    font-family: 'Verdana', Times, serif;
+    font-family: 'Lucida Bright', Times, serif;
+    background-image: url('https://cdn.pixabay.com/photo/2016/08/01/16/18/raspberries-1561457__340.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
-::placeholder { /* Most modern browsers support this now. */
-   color:    #909;
+nav a{
+    font-size: 30px;
+}
+h1{
+    color: #fff;
+}
+#imgdata{
+    width: 250px;
+}
+.shadows{
+    margin-bottom: 40px;
+    box-shadow: 50px 50px grey;
+}
+.menutab{
+    color: #000;
+    font-size: 20px;
+}
+.search_input{
+    border-style: outset;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
+fieldset{
+    border: black solid 1px;
+    background-color: white;
+    font-size: 20px;
+}
+legend{
+    width: auto;
+    color: #1f497d;
+    font-size: 30px;
+}
+.times_title{
+    font-weight: 600;
+    float: left;
+}
+.times{
+    float: left;
+    padding-left: 0.625em;
 }

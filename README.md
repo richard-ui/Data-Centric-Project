@@ -87,17 +87,49 @@ searched, viewed, added, deleted and updated.
 | Search function   | The users are able to search the recipe database by ingredient and recipe name. This function is available whether a user is logged in/registered or not.  |
 
 ## Bugs
+- 
 
 ## Testing
 
-### User Testing
+### User Testing for User Stories
+### First Time User's:
+
+- As a First Time user, I want to understand the main concept of the site and learn the intention of its relevance.
+
+  i. Upon entering the site, it is clear to the user that the website is about food, due to the sites vibrant colours and clear
+  background image of food displayed on the body.
+  
+  ii. These links are also dynamic as specific links will be shown depending on whether the user is logged in or not.
+
+- As a First time user, I want to be able to navigate the site in an easy and efficient way without any complex design.
+
+  i. The navigation is clear and bright using bold text for the linksto identify each.
+  
+  ii. These links are also dynamic as specific links will be shown depending on whether the user is logged in or not.
+
+- As a First Time user, I want to be able to browse and search for recipes.
+
+  i. A card is displayed on the homepage allowing me to type in a recipe and click the seasrch button beside it.
+  Recipes will display below.
+  
+  ii. If no recipes are found a "No results found" message will warn the user immediately.
+
+- As a First Time user, I want to get inspiration for a recipe to make myself.
+
+  i. The images have an effect on what food the user may desire
+  
+  ii. The Cuisines list in the dropdown provide nationalities, as they view them, they can think of recipes from one of these Countrie's.
+
+
+
 
 ### Further Testing
 
 ## Deployment
 
 ## Content
-- Images and BBC good food website
+- Images from Google images
+- BBC good food website for recipe idea's
 
 ## Credits
 - code, stack overflow
