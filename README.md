@@ -1,10 +1,8 @@
-![Rick's Recipe's](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
 # Data Centric Project
 
 ## Rick's Restaurants
 
-- Link to Project - [View](https://richard-ui.github.io/Data-Centric-project/)
+- Link to Project - [View](https://rickys-recipe-manager.herokuapp.com/)
 
 ![All_Devices](/static/img/big_chief.jpg)
 
@@ -46,7 +44,7 @@ searched, viewed, added, deleted and updated.
 ## Design
 
 1. Colour Scheme
-- The two main colours used on the site are dark blue and white. Using a dark and white color together contrasted nicely with the flow of the page.
+- The two main colours on the site are bright, creating a vibrant feeling for the user throughout. Using dark font for headings/links contrasted nicely with the flow of the page.
 
 2. Typography
 - The 'Verdana' font is the main font used throughout the website with Times and Serif as the fallback fonts in case for any reason the font is not supported by the browser.
