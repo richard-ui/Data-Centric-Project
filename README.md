@@ -150,7 +150,7 @@ searched, viewed, added, deleted and updated.
 
 - As a returning user, I want to be able to delete existing recipes.
 
-  i. For each recipe a red delete button will be displayed below it.
+  i. For each recipe a red delete button will be displayed below it. When pressed, a modal will appear asking for confirmation of deletion.
 
 - As a returning user, I want to be able to add new recipes.
 
@@ -160,6 +160,17 @@ searched, viewed, added, deleted and updated.
 
 
 ### Further Testing
+
+- The W3C Markup Validator was a feature used to validate all html elements on each page.
+
+- Whereas the W3C CSS Validator Services were used to validate every snippet of css in the style sheet.
+
+- JSHint was used to validate all the JavaScript code within each file.
+
+- The website was tested on multiple browsers such as Microsoft Edge, Opera and FireFox, but the main one that was used was Chrome. This was because I was using the chrome extension at the time for gitpod and I felt chrome was fast and reliable.
+
+- The website was viewed on iPhone, Android, Laptop and Desktop Devices. There was also use of the developer tools as a faster way to look at the site becoming responsive such as using the example devices in the tools area. Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
+
 
 ## Deployment
 
