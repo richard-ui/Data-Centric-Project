@@ -19,6 +19,8 @@ searched, viewed, added, deleted and updated.
 
 - As a First time user, I want to be able to navigate the site in an easy and efficient way without any complex design.
 
+- As a First Time user, I want to be able to register
+
 - As a First Time user, I want to be able to browse and search for recipes 
 
 - As a First Time user, I want to get inspiration for a recipe to make myself.
@@ -29,7 +31,9 @@ searched, viewed, added, deleted and updated.
 
 - As a returning user, I want to be able to view my recipes on my own profile page. 
 
-- As a returning user, I want to be able to edit and delete my recipes on the same page.
+- As a returning user, I want to be able to edit my existing recipes.
+
+- As a returning user, I want to be able to delete existing recipes.
 
 - As a returning user, I want to be able to add new recipes 
 
@@ -47,7 +51,7 @@ searched, viewed, added, deleted and updated.
 - The two main colours on the site are bright, creating a vibrant feeling for the user throughout. Using dark font for headings/links contrasted nicely with the flow of the page.
 
 2. Typography
-- The 'Verdana' font is the main font used throughout the website with Times and Serif as the fallback fonts in case for any reason the font is not supported by the browser.
+- The 'Lucida Bright' font is the main font used throughout the website with Times and Serif as the fallback fonts in case for any reason the font is not supported by the browser.
 
 ## Wireframes
 
@@ -105,6 +109,12 @@ searched, viewed, added, deleted and updated.
   
   ii. These links are also dynamic as specific links will be shown depending on whether the user is logged in or not.
 
+- As a First Time user, I want to be able to register
+
+  i. In the navbar a link named register that when clicked will take the user to the register page.
+
+  ii. They will then create using a username and password
+
 - As a First Time user, I want to be able to browse and search for recipes.
 
   i. A card is displayed on the homepage allowing me to type in a recipe and click the seasrch button beside it.
@@ -118,7 +128,35 @@ searched, viewed, added, deleted and updated.
   
   ii. The Cuisines list in the dropdown provide nationalities, as they view them, they can think of recipes from one of these Countrie's.
 
+### Returning User's:
 
+- As a returning user, I want to be able to log in easily and efficiently.
+  
+  i.  In the navbar a link named 'login' will take me to the login page.
+
+  ii. If they are a registered user, typing in their username and password will log them in.
+
+- As a returning user, I want to be able to view my recipes on my own profile page.
+
+  i. Created recipes made by the user can be displayed on the recipes/home page or their profile page once logged in.
+
+- As a returning user, I want to be able to edit my existing recipes.
+
+  i. All my recipes on the recipes page provide edit buttons.
+
+  ii. When the edit button is clicked, this will take me to the edit recipe page with existing data displayed in the input boxes.
+
+  iii. This will allow me to update multiple values, after the edit button is clicked, all values for that recipe will be updated.
+
+- As a returning user, I want to be able to delete existing recipes.
+
+  i. For each recipe a red delete button will be displayed below it.
+
+- As a returning user, I want to be able to add new recipes.
+
+  i. A form allows for user input with creating a new recipe, inlcluding name, image and cuisine.
+
+- As a returning user I want to be able to search a recipe from an input box and see suggestions depending on which letters I type.
 
 
 ### Further Testing
@@ -126,11 +164,11 @@ searched, viewed, added, deleted and updated.
 ## Deployment
 
 ## Content
-- Images from Google images
-- BBC good food website for recipe idea's
+- The images of each recipes came from Google images, using the Advanced search setting.
+- BBC good food website for recipe idea's and content.
 
 ## Credits
-- code, stack overflow
+- Made use of code from websites such as stack overflow and geeksforgeeks.com
 
 ## Acknowledgements
 - Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.
