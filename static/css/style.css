@@ -20,7 +20,8 @@ nav a{
     font-size: 30px;
 }
 h1{
-    color: #fff;
+    color: #000;
+    background-color: yellow;
 }
 #imgdata{
     width: 250px;
@@ -58,4 +59,24 @@ legend{
 .times{
     float: left;
     padding-left: 0.625em;
+}
+
+/* Media Queries */
+
+ /* # Mobile */
+
+@media only screen and (max-width: 768px) {
+
+.card-panel{
+    background-color: aqua;
+    margin: 0;
+}
+.form-fieldset{
+    padding: 0;
+    margin: 0;
+}
+.menutab{
+    font-size: 10px;
+}
+
 }
