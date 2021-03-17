@@ -61,22 +61,24 @@ legend{
     padding-left: 0.625em;
 }
 
+form#loginform, form#registerform{
+  margin: auto;
+  width: 70%;
+}
+
 /* Media Queries */
 
  /* # Mobile */
 
 @media only screen and (max-width: 768px) {
 
-.card-panel{
-    background-color: aqua;
-    margin: 0;
-}
-.form-fieldset{
-    padding: 0;
-    margin: 0;
-}
+
 .menutab{
     font-size: 10px;
+}
+form#loginform, form#registerform{
+  margin: auto;
+  width: 100%;
 }
 
 }
