@@ -91,6 +91,7 @@ searched, viewed, added, deleted and updated.
 # Bugs
 - There was an issue displaying the image for each recipe as it was not appearing as it should in the img tag. A solution to this, I did some research and figured that 
   When using Flask you cannot embed template tags inside other template tags as this causes an error. Therefore i replaced 
+
 '<img id="imgdata" src="{{ url_for('static', filename='img/'{{ recipe.file }} }}">' with '<img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}">'
 
 
