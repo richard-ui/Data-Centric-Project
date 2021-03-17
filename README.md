@@ -90,9 +90,13 @@ searched, viewed, added, deleted and updated.
 
 # Bugs
 - There was an issue displaying the image for each recipe as it was not appearing as it should in the img tag. A solution to this, I did some research and figured that 
-  When using Flask you cannot embed template tags inside other template tags as this causes an error. Therefore i replaced 
+  When using Flask you cannot embed template tags inside other template tags as this causes an error. Therefore I replaced:
 
-'<img id="imgdata" src="{{ url_for('static', filename='img/'{{ recipe.file }} }}">' with '<img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}">'
+  `<img id="imgdata" src="{{ url_for('static', filename='img/'{{ recipe.file }} }}">` 
+  
+  with 
+  
+  `<img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}">`
 
 
 # Testing
@@ -189,6 +193,20 @@ searched, viewed, added, deleted and updated.
 5. Under "Source" enter the drop down list with the first value of "None" and select "Master branch" instead
 6. The page will refresh to be took to the top of the page
 7. Scroll down until you get to the "Github pages" section to identify your now deployed link to your website
+
+## Forking the Github repository
+
+Forking the repsoitory means we are making a copy of the original version to edit and modify any changes without affecting the original.
+
+1. Log in to GitHub and locate the Github Repository
+2. At the top of the Repository (not top of the page) just above the "Settings" button on the menu, locate the "Fork" button
+3. You should now have a copy of the original Repository in your GitHub Account
+
+Making a Local Clone
+
+1.
+
+
 
 # Content
 - The images of each recipes came from Google images, using the Advanced search setting.
