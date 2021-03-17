@@ -81,7 +81,9 @@ def search_by_cuisine():
     query_cuisine = request.form.get("cuisine_name")
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
 
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query_cuisine}}))
+    recipes = list(mongo.db.recipes.find(
+        {"$text": {"$search": query_cuisine}})
+        )
     return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
 
 

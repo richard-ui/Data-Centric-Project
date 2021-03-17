@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Recipe Page</h1>
+    <h1 class="center-align yellow lighten-2">Recipe Page</h1>
 
     <div class="row card-panel grey lighten-5">
         <form action="{{ url_for('search_recipe') }}" method="post" class="col s12">
@@ -72,7 +72,7 @@
                         <h5>Recipe made By:</h5> '<b>{{ recipe.created_by }}</b>'<br>   
                     </div>
                      <div class="col s12 m4">
-                        <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}"> 
+                        <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}" alt="{{ recipe.recipe_name }}"> 
                     </div>
                 </div>
 

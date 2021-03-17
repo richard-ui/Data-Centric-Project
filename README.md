@@ -6,12 +6,12 @@
 
 ![All_Devices](/static/img/big_chief.jpg)
 
-## Brief Introduction to the Project
+# Brief Introduction to the Project
 
 The purpose of this project is to create a virtual recipe website that uses a database of recipes which can be 
 searched, viewed, added, deleted and updated.
 
-## UX User Stories
+# UX User Stories
 
 ### First Time User's:
 
@@ -45,7 +45,7 @@ searched, viewed, added, deleted and updated.
 
 - As an Admin, I want to be able to see who has added each recipe. 
 
-## Design
+# Design
 
 1. Colour Scheme
 - The two main colours on the site are bright, creating a vibrant feeling for the user throughout. Using dark font for headings/links contrasted nicely with the flow of the page.
@@ -53,13 +53,13 @@ searched, viewed, added, deleted and updated.
 2. Typography
 - The 'Lucida Bright' font is the main font used throughout the website with Times and Serif as the fallback fonts in case for any reason the font is not supported by the browser.
 
-## Wireframes
+# Wireframes
 
 - Computer Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/MapPage.pdf) 
 
 - Mobile Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/Mobile.pdf)
 
-## Technologies Used
+# Technologies Used
 
 1. Bootstrap 4.5
 2. Google Chrome
@@ -77,7 +77,7 @@ searched, viewed, added, deleted and updated.
 14. Heroku
 15. Jinja
 
-## Features
+# Features
 | Feature  | Details |
 | ------------- | ------------- |
 | Register  | The User can create an account which will be saved to the database and used to login for future use.   |
@@ -88,10 +88,13 @@ searched, viewed, added, deleted and updated.
 | Delete recipe   | Users are able to delete their own recipes. As above, this can only be done with the user's own recipes.  |
 | Search function   | The users are able to search the recipe database by ingredient and recipe name. This function is available whether a user is logged in/registered or not.  |
 
-## Bugs
-- 
+# Bugs
+- There was an issue displaying the image for each recipe as it was not appearing as it should in the img tag. A solution to this, I did some research and figured that 
+  When using Flask you cannot embed template tags inside other template tags as this causes an error. Therefore i replaced 
+'<img id="imgdata" src="{{ url_for('static', filename='img/'{{ recipe.file }} }}">' with '<img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}">'
 
-## Testing
+
+# Testing
 
 ### User Testing for User Stories
 ### First Time User's:
@@ -171,17 +174,29 @@ searched, viewed, added, deleted and updated.
 
 - The website was viewed on iPhone, Android, Laptop and Desktop Devices. There was also use of the developer tools as a faster way to look at the site becoming responsive such as using the example devices in the tools area. Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
+- The Responsinator tool was a feature used to view the deployed site and look to see how each device would display it. Device screens such as Android, iPhone and iPads were used to view on. In doing so they were viewed in a landscape and portrait perspective.
 
-## Deployment
 
-## Content
+# Deployment
+
+## Github Pages
+
+1. Log in to GitHub
+2. Locate the repositories and chose one that you want to Deploy
+3. Press the "Settings"
+4. Scroll down to the GitHub pages section
+5. Under "Source" enter the drop down list with the first value of "None" and select "Master branch" instead
+6. The page will refresh to be took to the top of the page
+7. Scroll down until you get to the "Github pages" section to identify your now deployed link to your website
+
+# Content
 - The images of each recipes came from Google images, using the Advanced search setting.
 - BBC good food website for recipe idea's and content.
 
-## Credits
+# Credits
 - Made use of code from websites such as stack overflow and geeksforgeeks.com
 
-## Acknowledgements
+# Acknowledgements
 - Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.
 - My Mentor provided me with help and provided me access to Holly’s repository to view. This allowed me to locate the issues in my code and improve functionality that I may have been struggling with.
 
