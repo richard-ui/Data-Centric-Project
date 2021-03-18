@@ -25,11 +25,15 @@
              <fieldset>
              <legend>{{ recipe.recipe_name }}</legend>
                 <div class="row">
-                     <div class="col s12 offset-s1 m6">
+                    <div class="col s12 m6">
+                       Cuisine type: '<em>{{ recipe.cuisine_name }}</em>'<br>   
+                    </div>
+                    <div class="col s12 m6">
                         <h5>Recipe made By:</h5> '<b>{{ recipe.created_by }}</b>'<br>   
                     </div>
                      <div class="col s12 m4">
-                        <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}"> 
+                        <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}"
+                        class="responsive-img"> 
                     </div>
                 </div>
 
