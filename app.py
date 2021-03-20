@@ -25,9 +25,14 @@ mongo = PyMongo(app)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
+# allowed file method
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# method to upload image to database
 
 
 def upload_image():
@@ -52,6 +57,8 @@ def upload_image():
         flash('Allowed image types are -> png, jpg, jpeg, gif')
         # return redirect(request.url)
 
+# routes
+
 
 @app.route("/")
 @app.route("/get_recipes")
@@ -64,27 +71,32 @@ def get_recipes():
                 {"_id": recipe["user_id"]})["username"]
         except:
             pass
-    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
+    return render_template("recipes.html", recipes=recipes,
+        dropdown_recipes=recipes, cuisines=cuisines)
 
 
 @app.route("/search_recipe", methods=["GET", "POST"])
 def search_recipe():
+    dropdown_recipes = list(mongo.db.recipes.find())
     query = request.form.get("query")
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
 
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
+    return render_template("recipes.html", recipes=recipes,
+        dropdown_recipes=dropdown_recipes, cuisines=cuisines)
 
 
 @app.route("/search_by_cuisine", methods=["GET", "POST"])
 def search_by_cuisine():
+    dropdown_recipes = list(mongo.db.recipes.find())
     query_cuisine = request.form.get("cuisine_name")
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
 
     recipes = list(mongo.db.recipes.find(
         {"$text": {"$search": query_cuisine}})
         )
-    return render_template("recipes.html", recipes=recipes, cuisines=cuisines)
+    return render_template("recipes.html", recipes=recipes, 
+        dropdown_recipes=dropdown_recipes, cuisines=cuisines)
 
 
 @app.route("/register", methods=["GET", "POST"])
