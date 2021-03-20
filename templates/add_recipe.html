@@ -4,91 +4,93 @@
 
      <h1 class="center-align yellow lighten-2">Add Recipe</h1>
 
-     <div class="row card-panel grey lighten-5">
+     <div class="card-panel col s12 yellow lighten-2">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}" enctype="multipart/form-data">
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-book prefix"></i>
-                <input id="recipe_name" name="recipe_name" minlength="4" maxlength="50"
-                    type="text" class="validate" required>
-                <label for="recipe_name">Recipe name:</label>
+            <fieldset>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-book prefix"></i>
+                    <input id="recipe_name" name="recipe_name" minlength="4" maxlength="50"
+                        type="text" class="validate" required>
+                    <label for="recipe_name">Recipe name:</label>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-pizza-slice prefix"></i>
-                <input id="ingredients" name="ingredients" minlength="4" maxlength="50"
-                    type="text" class="validate" required>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-pizza-slice prefix"></i>
+                    <input id="ingredients" name="ingredients" minlength="4" maxlength="50"
+                        type="text" class="validate" required>
 
-                <div id="dynamicInput"></div>
-                <label for="ingredients">Ingredient 1:</label>
-                <a class="waves-effect waves-light btn" onclick="addIngredient('dynamicInput');">
-                    Add Another Ingredient:
-                </a>
+                    <div id="dynamicInput"></div>
+                    <label for="ingredients">Ingredient 1:</label>
+                    <a class="waves-effect waves-light btn" onclick="addIngredient('dynamicInput');">
+                        Add Another Ingredient:
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-blender prefix"></i>
-                <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
-                    required>
-                <label for="prep_time">Prep Time:</label>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-blender prefix"></i>
+                    <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
+                        required>
+                    <label for="prep_time">Prep Time:</label>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-upload prefix"></i>
-                <input type="file" name="file" autocomplete="off" required>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-upload prefix"></i>
+                    <input type="file" name="file" autocomplete="off" required>
+                </div>
             </div>
-        </div>
 
 
-         <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-list-ol prefix"></i>
-                <input id="prep_steps" type="text" name="prep_steps" minlength="3" maxlength="300" class="validate" required>
-                <div id="dynamicInputTwo"></div>
-                <label for="prep_steps">Step 1</label>
-                <a class="waves-effect waves-light btn" onclick="addStep('dynamicInputTwo');">Add Another Step</a>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-list-ol prefix"></i>
+                    <input id="prep_steps" type="text" name="prep_steps" minlength="3" maxlength="300" class="validate" required>
+                    <div id="dynamicInputTwo"></div>
+                    <label for="prep_steps">Step 1</label>
+                    <a class="waves-effect waves-light btn" onclick="addStep('dynamicInputTwo');">Add Another Step</a>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-clock prefix"></i>
-                <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate"
-                    placeholder="eg. 1 hr and 15 mins" required>
-                <label for="cook_time">Cook Time:</label>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-clock prefix"></i>
+                    <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate"
+                        placeholder="eg. 1 hr and 15 mins" required>
+                    <label for="cook_time">Cook Time:</label>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12 m9">
-                <i class="fas fa-concierge-bell prefix"></i>
-                <select id="cuisine_name" name="cuisine_name" class="validate">
-                    <option value="" disabled selected> -- </option>
-                    {% for cuisine in cuisines %}
-                        <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="cuisine_name">Cuisine:</label>
+            <div class="row">
+                <div class="input-field col s12 m9">
+                    <i class="fas fa-concierge-bell prefix"></i>
+                    <select id="cuisine_name" name="cuisine_name" class="validate">
+                        <option value="" disabled selected> -- </option>
+                        {% for cuisine in cuisines %}
+                            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="cuisine_name">Cuisine:</label>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="input-field col s12">
-                <!-- cancel button -->
-                <a href="{{ url_for('get_recipes') }}" class="btn waves-effect red waves-light">
-                    Cancel <i class="fas fa-times-circle right"></i>
-                </a>
-                <button class="btn waves-effect waves-light" type="submit">Submit
-                    <i class="fas fa-chevron-circle-right"></i>
-                </button>
+            <div class="row">
+                <div class="input-field col s12">
+                    <!-- cancel button -->
+                    <a href="{{ url_for('get_recipes') }}" class="btn waves-effect red waves-light">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <button class="btn waves-effect waves-light" type="submit">Submit
+                        <i class="fas fa-chevron-circle-right"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+            </fieldset>
         </form>
     </div>
 
