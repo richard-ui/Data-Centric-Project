@@ -4,7 +4,7 @@
 
 - Link to Project - [View](https://rickys-recipe-manager.herokuapp.com/)
 
-![All_Devices](/static/img/big_chief.jpg)
+![All_Devices](/static/img/responsive_image.jpg)
 
 # Brief Introduction to the Project
 

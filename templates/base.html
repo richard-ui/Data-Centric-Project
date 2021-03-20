@@ -28,48 +28,53 @@
 
         <!-- top navbar -->
 
-		<nav class="nav-extended amber accent-1">
-			<div class="nav-wrapper">
-                <a href="{{ url_for('get_recipes') }}" class="brand-logo menutab" style="color: black; margin-left: 20px;"><span>Recipe Manager</span><i class="material-icons right">local_dining</i></a>
-				<a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
-				<ul class="right hide-on-med-and-down">
-                        <li><a class="menutab" href="{{ url_for('get_recipes') }}">Home</a></li>
-                    {% if session.user %}
-                        <li><a class="menutab" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a class="menutab" href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
-                        {% if session.user|lower == "admin"|lower %}
-                            <li><a class="menutab" href="{{ url_for('get_cuisines') }}">Manage Cuisine's</a></li>
+        <div class="navbar-fixed">
+            <nav class="nav-extended amber accent-1">
+                <div class="nav-wrapper">
+                    <a href="{{ url_for('get_recipes') }}" class="brand-logo menutab" id="menu-title"><span style="margin-left: 2rem;">Recipes</span><i class="material-icons right">local_dining</i></a>
+                    <a href="#" data-target="mobile-demo" style="color: blue;" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                    
+                    <ul class="right hide-on-med-and-down">
+                            <li><a class="menulinks" href="{{ url_for('get_recipes') }}">Home</a></li>
+                        {% if session.user %}
+                            <li><a class="menulinks" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                            <li><a class="menulinks" href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
+                            {% if session.user|lower == "admin"|lower %}
+                                <li><a class="menulinks" href="{{ url_for('get_cuisines') }}">Manage Cuisine's</a></li>
+                            {% endif %}
+                            <li><a class="menulinks" href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                            <li><a class="menulinks" href="{{ url_for('login') }}">Log In</a></li>
+                            <li><a class="menulinks" href="{{ url_for('register') }}">Register</a></li>
                         {% endif %}
-                        <li><a class="menutab" href="{{ url_for('logout') }}">Log Out</a></li>
-                     {% else %}
-                        <li><a class="menutab" href="{{ url_for('login') }}">Log In</a></li>
-                        <li><a class="menutab" href="{{ url_for('register') }}">Register</a></li>
-                    {% endif %}
-                </ul>
-			</div>
-		</nav>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
         <!-- mobile sidenav -->
 
 		<ul class="sidenav" id="mobile-demo">
-            <a href="{{ url_for('get_recipes') }}" class="brand-logo menutab" style="color: black; margin-left: 20rem;"><span>Recipe Manager</span><i class="material-icons right">local_dining</i></a>
-            <li><a class="menutab" href="{{ url_for('get_recipes') }}">Home</a></li>
+            <a href="{{ url_for('get_recipes') }}" class="brand-logo menutab" ><span style="color: red; font-size: 2rem; margin-left: 1rem; text-decoration: underline;">Recipes</span><i class="material-icons right">local_dining</i></a>
+            <li><a class="mobtab" id="mobtab" href="{{ url_for('get_recipes') }}">Home</a></li>
             {% if session.user %}
-                    <li><a class="menutab" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                    <li><a class="menutab" href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
+                    <li><a class="mobtab" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                    <li><a class="mobtab" href="{{ url_for('add_recipe') }}">Add New Recipe</a></li>
                 {% if session.user|lower == "admin"|lower %}
-                    <li><a class="menutab" href="{{ url_for('get_cuisines') }}">Manage Cuisine's</a></li>
+                    <li><a class="mobtab" href="{{ url_for('get_cuisines') }}">Manage Cuisine's</a></li>
                 {% endif %}
-                    <li><a class="menutab" href="{{ url_for('logout') }}">Log Out</a></li>
+                    <li><a class="mobtab" href="{{ url_for('logout') }}">Log Out</a></li>
             {% else %}
-                    <li><a class="menutab" href="{{ url_for('login') }}">Log In</a></li>
-                    <li><a class="menutab" href="{{ url_for('register') }}">Register</a></li>
+                    <li><a class="mobtab" href="{{ url_for('login') }}">Log In</a></li>
+                    <li><a class="mobtab" href="{{ url_for('register') }}">Register</a></li>
             {% endif %}
 		</ul>
 	</header>
     
      <section>
+
         <!-- flash messages -->
+
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -79,9 +84,11 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        
     </section>
 	
-	<!-- Main Content -->
+    <!-- Main Content -->
+    
 	<div class="container">
 
         {% block content %}
@@ -93,38 +100,39 @@
 	
 	<hr>
 	
-	<!-- Footer -->
+    <!-- Footer -->
+    
 	<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col s12">
-					<ul class="list-inline text-center">
+					<ul class="list-inline center-align">
 						<li class="list-inline-item">
 							<a href="https://twitter.com/">
 								<span class="fa-stack fa-lg">
-	                  <i class="fas fa-circle fa-stack-2x"></i>
-	                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-	                </span>
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
 							</a>
 						</li>
 						<li class="list-inline-item">
 							<a href="https://www.facebook.com/">
 								<span class="fa-stack fa-lg">
-	                  <i class="fas fa-circle fa-stack-2x"></i>
-	                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-	                </span>
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
 							</a>
 						</li>
 						<li class="list-inline-item">
 							<a href="https://github.com/">
 								<span class="fa-stack fa-lg">
-	                  <i class="fas fa-circle fa-stack-2x"></i>
-	                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-	                </span>
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
 							</a>
 						</li>
 					</ul>
-					<p class="copyright text-muted text-center">Copright &copy; Your Website <span id="copyright"> </span></p>
+					<p class="copyright text-muted center-align">Copright &copy; Rick's Website <span id="copyright"> </span></p>
 				</div>
 			</div>
 		</div>
