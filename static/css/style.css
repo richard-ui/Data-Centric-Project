@@ -34,6 +34,9 @@ nav .mobtab{
     color: #000;
     text-shadow: 2px 2px #000;
 }
+.box-shadow{
+    box-shadow: 5px 10px;
+}
 
 .search_input{
     border-style: outset;
@@ -73,6 +76,49 @@ form#loginform, form#registerform{
   max-height: 40%;
   width: 35%;
   will-change: top, opacity;
+}
+
+/* -- Password Strength meter -- */
+
+*::before, *::after *{
+    box-sizing: border-box;
+}
+.strength-meter{
+    position: relative;
+    height: 1.5rem;
+    width: 90%;
+    border: 3px solid #000;
+    border-radius: 1rem;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.strength-meter::before {
+    content: '';
+    position: absolute;
+    left: 5;
+    height: 100%;
+    width: calc(1% * var(--strength, 0)); /* if not set, set the progess to 0 */
+    background-color: hsl(261, 88%, 57%);
+    transition: width 200ms;
+}
+.password-input{
+    margin-top: 2rem;
+    width: 70%;
+    padding: .25rem .75rem;
+    background-color: hsl(261, 88%, 25%);
+    color: white;
+    border: 1px solid hsl(261, 88%, 57%);
+    outline: none;
+    text-align: center;
+    border-radius: .3rem;
+}
+.password-input:focus {
+    border-color: hsl(261, 88%, 70%);
+}
+.reasons > * {
+    margin-top: .5rem;
+    color: hsl(261, 88%, 80%);
 }
 
 /* Media Queries */
