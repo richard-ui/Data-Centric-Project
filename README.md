@@ -202,11 +202,44 @@ Forking the repsoitory means we are making a copy of the original version to edi
 2. At the top of the Repository (not top of the page) just above the "Settings" button on the menu, locate the "Fork" button
 3. You should now have a copy of the original Repository in your GitHub Account
 
-Making a Local Clone
+## Making a Local Clone
 
-1.
+1. On the main page of the repository, click the down arrow Code button
+2. Click the download icon under the relevant section to clone with either HTTPS, SSH or GitHub CLI
+3. In Git Bash, change the current directory to the location you want the directory to be stored
+4. Type git clone and then paste the URL you copied in step 2
+5. An example for HTTPS: git clone https://github.com/richard-ui/Data-Centric-Project
+6. Press enter - that's it, your clone has been completed!
 
+## Heroku
 
+### Deployment to Heroku
+
+1. Using the gitpod terminal, create requirements.txt and Procfile using these 2 commands:
+
+   - `pip3 freeze --local > requirements.txt`
+   - `echo web: python app.py > Procfile`
+
+2. These will be added to your directory. Now Push these newly created files to github using git push.
+3. Log in to Heroku.
+4. Select Create new app form the dropdown menu in the heroku dashboard.
+5. Choose a name for your new app.
+6. Navigate to the Deploy tab and under deployment method choose GitHub.
+7. Press Connect to GitHub and enter your Github repository that you want to associate with. Now click connect.
+8. Go to Settings tab, and under Config Vars choose Reveal config Vars.
+9. Now enter the following values into the required slots inside the table. These must match values created in the env.py file you created.
+
+| Key  | Value |
+| ------------- | ------------- |
+| IP  | 0.0.0.0   |
+| PORT  | 5000  |
+| SECRET_KEY  | <app_secret_key> |
+| MONGO_URI   | mongodb+srv://root:r00tUser@<cluster_name>.e6xdc.mongodb.net/<database_name>?retryWrites=true&w=majority  |
+| MONGO_DBNAME | <database_name> |
+
+10. Navigate back to the Deploy tab and under Automatic deploys choose Enable Automatic Deploys.
+11. Under Manual deploy, select master and click Deploy Branch.
+12. When app is completed downloading, press 'Open app' from the header dashboard which will open up the app in a new tab in your browser.
 
 # Content
 - The images of each recipes came from Google images, using the Advanced search setting.
@@ -225,4 +258,3 @@ Making a Local Clone
 
 - Father – Gary Jones 
 
-- Friend – Ashley Wilson 
