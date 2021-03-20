@@ -1,6 +1,6 @@
 # Data Centric Project
 
-## Rick's Restaurants
+## Rick's Recipes
 
 - Link to Project - [View](https://rickys-recipe-manager.herokuapp.com/)
 
