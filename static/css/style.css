@@ -30,8 +30,9 @@ nav .mobtab{
 
 /* -- Recipe Form -- */
 
-h1{
+.shadow-offset{
     color: #000;
+    text-shadow: 2px 2px #000;
 }
 
 .search_input{
@@ -41,12 +42,12 @@ h1{
 fieldset{
     border: black solid 1px;
     background-color: white;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 legend{
     width: auto;
     color: #1f497d;
-    font-size: 30px;
+    font-size: 2rem;
 }
 .times_title{
     font-weight: 600;
