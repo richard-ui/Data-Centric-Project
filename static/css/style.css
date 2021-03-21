@@ -6,7 +6,6 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
-
 /* -- Navigation -- */
 
 #imgdata{
@@ -86,7 +85,7 @@ form#loginform, form#registerform{
 .strength-meter{
     position: relative;
     height: 1.5rem;
-    width: 90%;
+    width: 60%;
     border: 3px solid #000;
     border-radius: 1rem;
     margin: 0 auto;
@@ -99,7 +98,7 @@ form#loginform, form#registerform{
     left: 5;
     height: 100%;
     width: calc(1% * var(--strength, 0)); /* if not set, set the progess to 0 */
-    background-color: hsl(261, 88%, 57%);
+    background-color: rgb(124,252,0);
     transition: width 200ms;
 }
 .password-input{
@@ -107,18 +106,13 @@ form#loginform, form#registerform{
     width: 70%;
     padding: .25rem .75rem;
     background-color: hsl(261, 88%, 25%);
-    color: white;
-    border: 1px solid hsl(261, 88%, 57%);
+    border: 1px solid rgb(124,252,0);
     outline: none;
-    text-align: center;
     border-radius: .3rem;
-}
-.password-input:focus {
-    border-color: hsl(261, 88%, 70%);
 }
 .reasons > * {
     margin-top: .5rem;
-    color: hsl(261, 88%, 80%);
+    color: 	rgb(255,99,71);
 }
 
 /* Media Queries */
@@ -126,7 +120,9 @@ form#loginform, form#registerform{
  /* # Mobile */
 
 @media only screen and (max-width: 768px) {
-
+#site-logo{
+    display: none;
+}
 .mobtab{
     font-size: 2.5rem;
     color: blue;

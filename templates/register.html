@@ -25,14 +25,20 @@
                         <i class="fas fa-user-lock prefix text-darken-2"></i>
                         
                         <input id="password" name="password" type="password" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate password-input" autofocus aria-laballedby="password" required>
+                            maxlength="20" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" class="validate password-input" autofocus aria-laballedby="password" required>
                         <label for="password">Password</label>
-                        <div id="reasons" class="reasons"></div>
+
+                        <small id="reasons" name="reasons" class="reasons"></small>
+
+                         <!-- strength meter-->
+
+                        <b style="margin-left: 2rem;">Password Strength:</b>
+                        <div style="margin-top: 1rem;" class="strength-meter" name="strength-meter" id="strength-meter"></div>
 
                     </div>
                 </div>
 
-                <div class="strength-meter" id="strength-meter"></div>
+               
 
                 <!-- register submit button -->
 

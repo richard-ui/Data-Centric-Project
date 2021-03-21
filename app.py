@@ -1,7 +1,8 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for,
+    jsonify)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -73,6 +74,34 @@ def get_recipes():
             pass
     return render_template("recipes.html", recipes=recipes,
         dropdown_recipes=recipes, cuisines=cuisines)
+
+
+
+@app.route("/get_recipe_example")
+def get_recipe_example():
+    recipes = mongo.db.recipes
+
+    offset = 1
+    limit = 3
+
+    starting_id = mongo.db.recipes.find().sort("_id", 1)
+    last_id = starting_id[offset]['_id']
+
+    recipes = mongo.db.recipes.find({'_id': {'$gte': last_id}}).sort("_id", 1).limit(limit)
+
+    output = []
+
+    for i in recipes:
+        output.append({'recipe' : i['recipe_name']})
+
+    next_url = '/get_recipe_example?limit=' + str(limit) + '&offset=' + str(offset + limit)
+    prev_url = '/get_recipe_example?limit=' + str(limit) + '&offset=' + str(offset - limit)
+
+    return jsonify({'result': output, 'prev_url': prev_url, 'next_url': next_url})
+
+    #return render_template("get_recipe_example.html", recipes=recipes, prev=prev_url, next=next_url)
+
+
 
 
 @app.route("/search_recipe", methods=["GET", "POST"])
