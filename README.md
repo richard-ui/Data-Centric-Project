@@ -55,7 +55,7 @@ searched, viewed, added, deleted and updated.
 
 # Wireframes
 
-- Computer Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/MapPage.pdf) 
+- Computer Wireframe - [View](https://github.com/richard-ui/Data-Centric-Project/tree/master/assets/wireframes/MapPage.pdf) 
 
 - Mobile Wireframe - [View](https://github.com/richard-ui/interactive-milestone-project/tree/master/assets/wireframes/Mobile.pdf)
 
