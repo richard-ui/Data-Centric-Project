@@ -1,8 +1,7 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for,
-    jsonify)
+    redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,7 +10,7 @@ if os.path.exists("env.py"):
     import env
 
 
-UPLOAD_FOLDER = 'static/img/'
+# UPLOAD_FOLDER = 'static/img/'
 
 app = Flask(__name__)
 
@@ -19,7 +18,7 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 mongo = PyMongo(app)
@@ -48,10 +47,8 @@ def upload_image():
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        # print('upload_image filename: ' + filename)
-        # flash('Image successfully uploaded and displayed below')
-        # return render_template('recipes.html', filename=filename)
+        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save(filename)
         return filename
 
     else:
@@ -73,35 +70,7 @@ def get_recipes():
         except:
             pass
     return render_template("recipes.html", recipes=recipes,
-        dropdown_recipes=recipes, cuisines=cuisines)
-
-
-
-@app.route("/get_recipe_example")
-def get_recipe_example():
-    recipes = mongo.db.recipes
-
-    offset = 1
-    limit = 3
-
-    starting_id = mongo.db.recipes.find().sort("_id", 1)
-    last_id = starting_id[offset]['_id']
-
-    recipes = mongo.db.recipes.find({'_id': {'$gte': last_id}}).sort("_id", 1).limit(limit)
-
-    output = []
-
-    for i in recipes:
-        output.append({'recipe' : i['recipe_name']})
-
-    next_url = '/get_recipe_example?limit=' + str(limit) + '&offset=' + str(offset + limit)
-    prev_url = '/get_recipe_example?limit=' + str(limit) + '&offset=' + str(offset - limit)
-
-    return jsonify({'result': output, 'prev_url': prev_url, 'next_url': next_url})
-
-    #return render_template("get_recipe_example.html", recipes=recipes, prev=prev_url, next=next_url)
-
-
+                           dropdown_recipes=recipes, cuisines=cuisines)
 
 
 @app.route("/search_recipe", methods=["GET", "POST"])
@@ -112,7 +81,8 @@ def search_recipe():
 
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
     return render_template("recipes.html", recipes=recipes,
-        dropdown_recipes=dropdown_recipes, cuisines=cuisines)
+                           dropdown_recipes=dropdown_recipes,
+                           cuisines=cuisines)
 
 
 @app.route("/search_by_cuisine", methods=["GET", "POST"])
@@ -124,8 +94,9 @@ def search_by_cuisine():
     recipes = list(mongo.db.recipes.find(
         {"$text": {"$search": query_cuisine}})
         )
-    return render_template("recipes.html", recipes=recipes, 
-        dropdown_recipes=dropdown_recipes, cuisines=cuisines)
+    return render_template("recipes.html", recipes=recipes,
+                           dropdown_recipes=dropdown_recipes,
+                           cuisines=cuisines)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -164,11 +135,13 @@ def login():
             # ensure hashed password matches user input
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                session["is_admin"] = existing_user["is_admin"] or False
+
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                     "profile", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -217,7 +190,7 @@ def add_recipe():
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.getlist("ingredients"),
             "prep_time": request.form.get("prep_time"),
-            "file": upload_image(),
+           # "file": upload_image(),
             "prep_steps": request.form.getlist("prep_steps"),
             "cook_time": request.form.get("cook_time"),
             "cuisine_name": request.form.get("cuisine_name"),
@@ -253,7 +226,8 @@ def edit_recipe(recipe_id):
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
-    return render_template("edit_recipe.html", recipe=recipe, cuisines=cuisines)
+    return render_template("edit_recipe.html", recipe=recipe,
+                           cuisines=cuisines)
 
 
 @app.route("/delete_recipe/<recipe_id>")
@@ -307,4 +281,3 @@ if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=True)
-# Remember to change debug to False before submitting project
