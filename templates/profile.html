@@ -2,12 +2,12 @@
 {% block content %}
 
     <div class="title-style">
-        <h1 class="center-align yellow lighten-2"> {{ username }}'s Recipes</h1>
+        <h1 class="center-align yellow lighten-2 shadow-offset"> {{ username }}'s Recipes</h1>
     </div>
 
-{% for recipe in recipes %}
-{% if session.user|lower == recipe.user_id|lower %}
-<div class="card-panel yellow lighten-2">
+        {% for recipe in recipes %}
+        {% if session.user|lower == recipe.user_id|lower %}
+        <div class="card-panel grey lighten-2">
              <form>
              <fieldset>
              <legend>{{ recipe.recipe_name }}</legend>
@@ -19,7 +19,7 @@
                         <h5>Recipe made By:</h5> '<b>{{ recipe.created_by }}</b>'<br>   
                     </div>
                      <div class="col s12 m4">
-                        <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}"
+                        <img id="imgdata" src="{{ recipe.file }}" alt="{{ recipe.recipe_name }}"
                         class="responsive-img"> 
                     </div>
                 </div>

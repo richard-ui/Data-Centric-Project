@@ -63,7 +63,7 @@
     {% if recipes|length > 0 %}
          {% for recipe in recipes %}
          
-         <div class="card-panel col s12 yellow lighten-2">
+         <div class="card-panel col s12 grey lighten-2">
              <form class="form-fieldset">
                 <fieldset>
                 <legend>{{ recipe.recipe_name }}</legend>
@@ -75,7 +75,7 @@
                             <h5>Recipe made By:</h5> '<b>{{ recipe.created_by }}</b>'<br>   
                         </div>
                         <div class="col s12 m4">
-                            <img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}" alt="{{ recipe.recipe_name }}"
+                            <img id="imgdata" src="{{ recipe.file }}" alt="{{ recipe.recipe_name }}"
                             class="responsive-img"> 
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                     </div>
                     
                     <div class="s12">
-                        {% if session.user|lower == recipe.user_id|lower %}
+                        {% if session.user|lower == recipe.created_by|lower or session.is_admin %}
                             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
                                 class="waves-effect waves-light btn-small button-style">Edit</a>
                             <a class="waves-effect waves-light btn-small red modal-trigger button-style" href="#modaldel">Delete</a>

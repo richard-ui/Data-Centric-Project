@@ -10,50 +10,15 @@ if os.path.exists("env.py"):
     import env
 
 
-# UPLOAD_FOLDER = 'static/img/'
-
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 mongo = PyMongo(app)
-
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
-# allowed file method
-
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-# method to upload image to database
-
-
-def upload_image():
-    if 'file' not in request.files:
-        flash('No file part')
-        return redirect(request.url)
-    file = request.files['file']
-
-    if file.filename == '':
-        flash('No image selected for uploading')
-        return redirect(request.url)
-
-    if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        file.save(filename)
-        return filename
-
-    else:
-        flash('Allowed image types are -> png, jpg, jpeg, gif')
-        # return redirect(request.url)
 
 # routes
 
@@ -112,7 +77,8 @@ def register():
 
         register = {
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "is_admin": False
         }
         mongo.db.users.insert_one(register)
 
@@ -190,7 +156,7 @@ def add_recipe():
             "recipe_name": request.form.get("recipe_name"),
             "ingredients": request.form.getlist("ingredients"),
             "prep_time": request.form.get("prep_time"),
-           # "file": upload_image(),
+            "file": request.form.get("recipe_image_url"),
             "prep_steps": request.form.getlist("prep_steps"),
             "cook_time": request.form.get("cook_time"),
             "cuisine_name": request.form.get("cuisine_name"),

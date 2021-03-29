@@ -2,7 +2,9 @@ const strengthMeter = document.getElementById('strength-meter')
 const passwordInput = document.getElementById('password')
 const reasonsContainer = document.getElementById('reasons')
 
+if(passwordInput){
 passwordInput.addEventListener('input', updateStrengthMeter)
+}
 
 // call function on load
 

@@ -3,8 +3,8 @@
 
     <div class="row">
         <form id="registerform" method="POST" action="{{ url_for('register') }}">
-            <h1 class="center-align yellow lighten-2">Register</h1>
-            <div class="card-panel yellow lighten-2">
+            <h1 class="center-align yellow lighten-2 shadow-offset">Register</h1>
+            <div class="card-panel grey lighten-2">
                 <fieldset>
                     
                 <!-- username -->
@@ -25,7 +25,7 @@
                         <i class="fas fa-user-lock prefix text-darken-2"></i>
                         
                         <input id="password" name="password" type="password" minlength="5"
-                            maxlength="20" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$" class="validate password-input" autofocus aria-laballedby="password" required>
+                            maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" class="validate password-input" autofocus aria-laballedby="password" required>
                         <label for="password">Password</label>
 
                         <small id="reasons" name="reasons" class="reasons"></small>

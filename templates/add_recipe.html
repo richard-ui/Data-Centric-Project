@@ -2,13 +2,13 @@
 {% block content %}
 
 
-     <h1 class="center-align yellow lighten-2">Add Recipe</h1>
+     <h1 class="center-align yellow lighten-2 shadow-offset">Add Recipe</h1>
 
-     <div class="card-panel col s12 yellow lighten-2">
+     <div class="card-panel col s12 grey lighten-2">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}" enctype="multipart/form-data">
             <fieldset>
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-book prefix"></i>
                     <input id="recipe_name" name="recipe_name" minlength="4" maxlength="50"
                         type="text" class="validate" required>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-pizza-slice prefix"></i>
                     <input id="ingredients" name="ingredients" minlength="4" maxlength="50"
                         type="text" class="validate" required>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-blender prefix"></i>
                     <input id="prep_time" type="text" name="prep_time" class="validate" placeholder="eg. 1 hr and 15 mins"
                         required>
@@ -40,15 +40,15 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m9">
-                    <i class="fas fa-upload prefix"></i>
-                    <input type="file" name="file" autocomplete="off" required>
+                <div class="input-field col s12">
+                    <a class="waves-effect waves-light btn" id="image_upload_btn" ><i class="material-icons left">upload_file</i>Upload</a>
+                     <input type="hidden" id="recipe_image_url" name="recipe_image_url">
                 </div>
             </div>
 
 
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-list-ol prefix"></i>
                     <input id="prep_steps" type="text" name="prep_steps" minlength="3" maxlength="300" class="validate" required>
                     <div id="dynamicInputTwo"></div>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-clock prefix"></i>
                     <input id="cook_time" type="text" name="cook_time" minlength="3" maxlength="30" class="validate"
                         placeholder="eg. 1 hr and 15 mins" required>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m9">
+                <div class="input-field col s12">
                     <i class="fas fa-concierge-bell prefix"></i>
                     <select id="cuisine_name" name="cuisine_name" class="validate">
                         <option value="" disabled selected> -- </option>

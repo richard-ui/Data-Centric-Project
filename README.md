@@ -41,9 +41,13 @@ searched, viewed, added, deleted and updated.
 
 ### Admin goals: 
 
-- As an Admin, I want recipes added via the site to be stored in the correct format in the database 
+- As an Admin, I want recipes added via the site to be stored in the correct format in the database. (jpg, png etc)
 
-- As an Admin, I want to be able to see who has added each recipe. 
+- As an Admin, I want to be able to see who has added each recipe.
+
+- As an Admin, I want to be able to Add, edit and delete recipes.
+
+- As an Admin, I want to be able to Add, edit and delete cuisine types.
 
 # Design
 
@@ -89,15 +93,10 @@ searched, viewed, added, deleted and updated.
 | Search function   | The users are able to search the recipe database by ingredient and recipe name. This function is available whether a user is logged in/registered or not.  |
 
 # Bugs
-- There was an issue displaying the image for each recipe as it was not appearing as it should in the img tag. A solution to this, I did some research and figured that 
-  When using Flask you cannot embed template tags inside other template tags as this causes an error. Therefore I replaced:
 
-  `<img id="imgdata" src="{{ url_for('static', filename='img/'{{ recipe.file }} }}">` 
-  
-  with 
-  
-  `<img id="imgdata" src="{{ url_for('static', filename='img/') }}{{ recipe.file }}">`
-
+- I defined an upload method in my python code to generate an upload for the image. However after displaying to Heroku the images for each recipe would not display
+  I then did some research and talked to my mentor, as they suggested that i use a server based application to save an image file. I used the 'Cloudinary' application to store
+  my image files their. They would then be retrieved from my mongodb database and onto the webpage.
 
 # Testing
 
@@ -166,6 +165,24 @@ searched, viewed, added, deleted and updated.
 
 - As a returning user I want to be able to search a recipe from an input box and see suggestions depending on which letters I type.
 
+### Admin User's:
+
+- As an Admin, I want recipes added via the site to be stored in the correct format in the database. (jpg, png etc)
+
+  i. Images that are about to be uploaded are validated for PNG or JPEG for formats.
+
+- As an Admin, I want to be able to see who has added each recipe.
+
+  i. Once logged in, The recipes page displays each recipe along with the User name who created it.
+
+- As an Admin, I want to be able to Add, edit and delete recipes
+
+  i. On the Recipes page their our edit and delete buttons below each recipe. They can interact with these as they wish.
+
+- As an Admin, I want to be able to Add, edit and delete cuisine types.
+
+  i. When the Admin is logged in, the 'Manage Cuisine's' tab on the navbar will display. Clicking this will take the user to the cuisines page
+     where each cuisine will have an edit and delete button. From their they can modify as they wish.
 
 ### Further Testing
 
@@ -246,11 +263,13 @@ Forking the repsoitory means we are making a copy of the original version to edi
 - BBC good food website for recipe idea's and content.
 
 # Credits
+## Code
 - Made use of code from websites such as stack overflow and geeksforgeeks.com
 
 # Acknowledgements
 - Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.
 - My Mentor provided me with help and provided me access to Holly’s repository to view. This allowed me to locate the issues in my code and improve functionality that I may have been struggling with.
+- Slack was used to help me with the image upload, so it can be used on the server.
 
  My friends and family who helped to test the site and to add recipes 
 
