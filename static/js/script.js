@@ -38,4 +38,21 @@ $(document).ready(function () {
         });
     }
 
+     // cloudinary callback. Sets upload image url input
+
+        function imageUploaded(error, result) {
+          $( '#recipe_image_url' ).val(result[0].secure_url);
+            }
+            // Shows the cloudinary image upload widget
+            
+            $( "#image_upload_btn" ).click(function(event) {
+                event.preventDefault();
+                cloudinary.openUploadWidget(
+            {
+                cloud_name: 'dmsnykkrr',
+                upload_preset: 'fieqz5y4',
+            },
+                imageUploaded);
+            });
+
 });
