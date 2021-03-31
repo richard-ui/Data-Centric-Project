@@ -80,6 +80,7 @@ searched, viewed, added, deleted and updated.
 13. MongoDB
 14. Heroku
 15. Jinja
+16. Cloudinary
 
 # Features
 | Feature  | Details |
@@ -97,6 +98,10 @@ searched, viewed, added, deleted and updated.
 - I defined an upload method in my python code to generate an upload for the image. However after displaying to Heroku the images for each recipe would not display
   I then did some research and talked to my mentor, as they suggested that i use a server based application to save an image file. I used the 'Cloudinary' application to store
   my image files their. They would then be retrieved from my mongodb database and onto the webpage.
+
+- There is an issue with the drop down menu when searching for a recipe. If the user pressed the search button without selecting an option from the menu, an error would run saying
+  the route is displaying null. To fix this, I accidentally was using disabled selected on the dropdown element. However when removing this, it fixed the problem and would display the no results
+  found message.
 
 # Testing
 
@@ -264,7 +269,10 @@ Forking the repsoitory means we are making a copy of the original version to edi
 
 # Credits
 ## Code
-- Made use of code from websites such as stack overflow and geeksforgeeks.com
+- Made use of code from stack overflow for to implement JavaScript and jQuery code.
+- Also used code from Materialize as a way to design the form.
+- W3schools was a helpful website for searching how to validate forms with attributes.
+- For the Password strength generator, I used snippets of code from a Youtube video and made it my own. This was from 'Web dev simplified's' channel, that shows how to implement a password feature using JavaScript.
 
 # Acknowledgements
 - Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.
