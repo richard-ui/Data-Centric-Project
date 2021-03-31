@@ -5,7 +5,6 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.utils import secure_filename
 if os.path.exists("env.py"):
     import env
 
@@ -32,7 +31,7 @@ def get_recipes():
         try:
             recipe["user_id"] = mongo.db.users.find_one(
                 {"_id": recipe["user_id"]})["username"]
-        except:
+        except ValueError:
             pass
     return render_template("recipes.html", recipes=recipes,
                            dropdown_recipes=recipes, cuisines=cuisines)
@@ -139,7 +138,7 @@ def profile(username):
                 # find user that matches current session
                 recipe["user_id"] = mongo.db.users.find_one(
                     {"_id": recipe["user_id"]})["username"]
-            except:
+            except ValueError:
                 pass
         return render_template(
             "profile.html", username=username.capitalize(), recipes=recipes)

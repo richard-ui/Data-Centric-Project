@@ -65,6 +65,10 @@ form#loginform, form#registerform{
   width: 70%;
 }
 
+#image{
+    margin-top: 8px;
+}
+
 /* -- Modal -- */
 
 .modal {
@@ -79,7 +83,7 @@ form#loginform, form#registerform{
 
 /* -- Password Strength meter -- */
 
-*::before, *::after *{
+*::before, *::after{
     box-sizing: border-box;
 }
 .strength-meter{
@@ -95,7 +99,7 @@ form#loginform, form#registerform{
 .strength-meter::before {
     content: '';
     position: absolute;
-    left: 5;
+    left: 1px;
     height: 100%;
     width: calc(1% * var(--strength, 0)); /* if not set, set the progess to 0 */
     background-color: rgb(124,252,0);

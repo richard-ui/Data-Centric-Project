@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 let counter = 2;
 let limit = 30;
 const newIngredient = '<div id="ingredientholder*" class="input-field col s12"><i class="fas fa-pizza-slice prefix"></i><input id="ingredients*" type="text" name="ingredients" minlength="3" maxlength="60" class="validate" required><label for="ingredients*" placeholder="Ingredient">Ingredient *</label><a class="waves-effect waves-light btn" onClick="deleteIngredient(this)" data-ingredient="ingredientholder*"><i class="fas fa-times"></i> Remove</a></div>'

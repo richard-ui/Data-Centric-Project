@@ -42,7 +42,15 @@ $(document).ready(function () {
 
         function imageUploaded(error, result) {
           $( '#recipe_image_url' ).val(result[0].secure_url);
+
+            var img = document.createElement("IMG"); // creates new element on page
+            img.src = result[0].secure_url;
+            img.style.width = "40%";
+            img.style.height = "40%";
+
+            $('#image').html(img);
             }
+            
             // Shows the cloudinary image upload widget
             
             $( "#image_upload_btn" ).click(function(event) {

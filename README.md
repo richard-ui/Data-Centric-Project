@@ -203,6 +203,9 @@ searched, viewed, added, deleted and updated.
 
 - The Responsinator tool was a feature used to view the deployed site and look to see how each device would display it. Device screens such as Android, iPhone and iPads were used to view on. In doing so they were viewed in a landscape and portrait perspective.
 
+  ![All_Devices](/static/img/mobile_responsinator.png)
+
+  ![All_Devices](/static/img/ipad_responsinator.png)
 
 # Deployment
 
@@ -269,7 +272,7 @@ Forking the repsoitory means we are making a copy of the original version to edi
 
 # Credits
 ## Code
-- Made use of code from stack overflow for to implement JavaScript and jQuery code.
+- Slack was used to gather information about what jQuery code to use for implementing an image upload function() to the Cloudinary server.
 - Also used code from Materialize as a way to design the form.
 - W3schools was a helpful website for searching how to validate forms with attributes.
 - For the Password strength generator, I used snippets of code from a Youtube video and made it my own. This was from 'Web dev simplified's' channel, that shows how to implement a password feature using JavaScript.
