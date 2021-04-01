@@ -41,14 +41,14 @@ $(document).ready(function () {
      // cloudinary callback. Sets upload image url input
 
         function imageUploaded(error, result) {
-          $( '#recipe_image_url' ).val(result[0].secure_url);
+          $( '#recipe_image_url' ).val(result[0].secure_url); // put image url in hidden recipe field
 
             var img = document.createElement("IMG"); // creates new element on page
             img.src = result[0].secure_url;
-            img.style.width = "40%";
+            img.style.width = "40%";              // style element on the page
             img.style.height = "40%";
 
-            $('#image').html(img);
+            $('#image').html(img); // display element inside this current div
             }
             
             // Shows the cloudinary image upload widget
@@ -60,7 +60,7 @@ $(document).ready(function () {
                 cloud_name: 'dmsnykkrr',
                 upload_preset: 'fieqz5y4',
             },
-                imageUploaded);
+                imageUploaded); // calls imageuploaded function
             });
 
 });

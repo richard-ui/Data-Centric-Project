@@ -11,6 +11,12 @@
 The purpose of this project is to create a virtual recipe website that uses a database of recipes which can be 
 searched, viewed, added, deleted and updated.
 
+## Data Details for Admin (test purposes for examiner to use)
+
+- Username: richard123  
+- Password: Muffin1234!
+
+
 # UX User Stories
 
 ### First Time User's:

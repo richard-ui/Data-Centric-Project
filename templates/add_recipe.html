@@ -7,6 +7,9 @@
      <div class="card-panel col s12 grey lighten-2">
         <form class="col s12" method="POST" action="{{ url_for('add_recipe') }}" enctype="multipart/form-data">
             <fieldset>
+            
+            <!-- recipe name -->
+
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-book prefix"></i>
@@ -15,6 +18,8 @@
                     <label for="recipe_name">Recipe name:</label>
                 </div>
             </div>
+
+            <!-- add ingredients -->
 
             <div class="row">
                 <div class="input-field col s12">
@@ -30,6 +35,8 @@
                 </div>
             </div>
 
+            <!-- preparation time -->
+
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-blender prefix"></i>
@@ -38,6 +45,8 @@
                     <label for="prep_time">Prep Time:</label>
                 </div>
             </div>
+
+            <!-- upload button and url of recipe image on upload -->
 
             <div class="row">
                 <div class="input-field col s12">
@@ -48,6 +57,7 @@
                 </div>
             </div>
 
+            <!-- preparation time -->
 
             <div class="row">
                 <div class="input-field col s12">
@@ -59,6 +69,8 @@
                 </div>
             </div>
 
+            <!-- preparation time -->
+
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-clock prefix"></i>
@@ -67,6 +79,8 @@
                     <label for="cook_time">Cook Time:</label>
                 </div>
             </div>
+
+            <!-- cuisine name dropdown list -->
 
             <div class="row">
                 <div class="input-field col s12">
@@ -81,9 +95,11 @@
                 </div>
             </div>
 
+            <!-- submit and cancel buttons -->
+
             <div class="row">
                 <div class="input-field col s12">
-                    <!-- cancel button -->
+
                     <a href="{{ url_for('get_recipes') }}" class="btn waves-effect red waves-light">
                         Cancel <i class="fas fa-times-circle right"></i>
                     </a>

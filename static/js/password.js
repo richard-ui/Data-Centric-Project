@@ -3,6 +3,7 @@ const strengthMeter = document.getElementById('strength-meter');
 const passwordInput = document.getElementById('password');
 const reasonsContainer = document.getElementById('reasons');
 
+// if password input true
 if(passwordInput){
 passwordInput.addEventListener('input', updateStrengthMeter);
 }
@@ -17,14 +18,15 @@ function updateStrengthMeter() {
   weaknesses.forEach(weakness => {
     if (weakness == null) return;
     strength -= weakness.deduction;
-    const messageElement = document.createElement('div');
+    const messageElement = document.createElement('div'); // create new element and display current error message
     messageElement.innerText = weakness.message;
     reasonsContainer.appendChild(messageElement);
   });
-  strengthMeter.style.setProperty('--strength', strength);
+  strengthMeter.style.setProperty('--strength', strength); // set strenghh meter
 }
 
 function calculatePasswordStrength(password) {
+  // create array and push functions to this array
   const weaknesses = [];
   
   weaknesses.push(lengthWeakness(password));
@@ -35,6 +37,8 @@ function calculatePasswordStrength(password) {
 
   return weaknesses;
 }
+
+// functions for validation checking
 
 function lengthWeakness(password) {
   const length = password.length;

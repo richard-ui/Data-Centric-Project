@@ -3,6 +3,8 @@
 
     <h1 class="center-align yellow lighten-2 shadow-offset">Cuisine's</h1>
 
+    <!-- button to add new cuisine -->
+
     <div class="row">
         <div class="col s12 center-align">
             <a href="{{ url_for('add_cuisine') }}" class="btn-large light-blue darken-2 text-shadow">
@@ -10,6 +12,8 @@
             </a>
         </div>
     </div>
+
+    <!-- edit and delete buttons of current cuisine -->
 
     <div class="row">
         {% for cuisine in cuisines %}

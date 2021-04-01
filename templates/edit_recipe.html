@@ -8,6 +8,9 @@
             <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
                 <fieldset>
                 <legend>{{ recipe.recipe_name }}</legend>
+
+                <!-- recipe name -->
+
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-book prefix"></i>
@@ -34,6 +37,8 @@
                         </div>
                     </div>
 
+                    <!-- preparation time -->
+
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-blender prefix"></i>
@@ -42,6 +47,8 @@
                             <label for="prep_time">Prep Time:</label>
                         </div>
                     </div>
+
+                    <!-- image file name -->
 
                     <div class="row">
                         <div class="input-field col s12">
@@ -70,6 +77,8 @@
                         </div>
                     </div>
 
+                    <!-- cook time -->
+
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="fas fa-clock prefix"></i>
@@ -78,6 +87,8 @@
                             <label for="cook_time">Cook Time</label>
                         </div>
                     </div>
+
+                    <!-- current cuisine is selected by default -->
 
                     <div class="row">
                         <div class="input-field col s12">
@@ -96,9 +107,11 @@
                         </div>
                     </div>
 
+                    <!-- submit and cancel buttons -->
+
                     <div class="row">
                         <div class="input-field col s12">
-                            <!-- cancel button -->
+                         
                             <a href="{{ url_for('get_recipes') }}" class="btn waves-effect red waves-light">
                                 Cancel <i class="fas fa-times-circle right"></i>
                             </a>

@@ -5,6 +5,9 @@
 
     <div class="row card-panel grey lighten-5 box-shadow">
         <form action="{{ url_for('search_recipe') }}" method="post" class="col s12">
+
+            <!-- loop through ingredients -->
+
             <div class="row center-align">
                 <div class="input-field search_input col s12 m7">
                     <i class="fas fa-search prefix"></i>
@@ -111,7 +114,7 @@
                     </div>
                     
                     <div class="s12">
-                        {% if session.user|lower == recipe.created_by|lower or session.is_admin %}
+                        {% if session.user|lower == recipe.user_id|lower or session.is_admin %}
                             <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"
                                 class="waves-effect waves-light btn-small button-style">Edit</a>
                             <a class="waves-effect waves-light btn-small red modal-trigger button-style" href="#modaldel">Delete</a>

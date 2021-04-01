@@ -25,36 +25,45 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
+    # find all recipes from mongodb
     recipes = list(mongo.db.recipes.find())
+    # find all current cuisine types alphebetically
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
     for recipe in recipes:
         try:
+            # find username with same id in both users and recipes
             recipe["user_id"] = mongo.db.users.find_one(
                 {"_id": recipe["user_id"]})["username"]
+            # raise error if false
         except ValueError:
             pass
     return render_template("recipes.html", recipes=recipes,
                            dropdown_recipes=recipes, cuisines=cuisines)
 
 
+# allows user to search by textbox
 @app.route("/search_recipe", methods=["GET", "POST"])
 def search_recipe():
     dropdown_recipes = list(mongo.db.recipes.find())
-    query = request.form.get("query")
+    query = request.form.get("query")  # query textbox value
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
 
+    # find recipe from input
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
     return render_template("recipes.html", recipes=recipes,
                            dropdown_recipes=dropdown_recipes,
                            cuisines=cuisines)
 
 
+# allows user to search by dropdown list
 @app.route("/search_by_cuisine", methods=["GET", "POST"])
 def search_by_cuisine():
+    # use dropdown list to allow users to search from dropdown list
     dropdown_recipes = list(mongo.db.recipes.find())
     query_cuisine = request.form.get("cuisine_name")
     cuisines = mongo.db.cuisines.find().sort("cuisine_name", 1)
 
+    # query to search recipes
     recipes = list(mongo.db.recipes.find(
         {"$text": {"$search": query_cuisine}})
         )
@@ -63,6 +72,7 @@ def search_by_cuisine():
                            cuisines=cuisines)
 
 
+# register user into db
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -70,10 +80,13 @@ def register():
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
+        # warning error
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
 
+        # if passed, username, password will be inserted it aswell as inserting
+        # is_admin is set to false as they wont have access to admin rights
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -135,9 +148,10 @@ def profile(username):
     if session["user"]:
         for recipe in recipes:
             try:
-                # find user that matches current session
+                # find username with same id in both users and recipes
                 recipe["user_id"] = mongo.db.users.find_one(
                     {"_id": recipe["user_id"]})["username"]
+            # raise error if false
             except ValueError:
                 pass
         return render_template(
@@ -149,7 +163,7 @@ def profile(username):
 @app.route("/add_recipe", methods=["GET", "POST"])
 def add_recipe():
     if request.method == "POST":
-
+        # find user with session login
         user = mongo.db.users.find_one({"username": session["user"]})
         new_recipe = {
             "recipe_name": request.form.get("recipe_name"),
@@ -162,6 +176,8 @@ def add_recipe():
             "created_by": session["user"],
             "user_id": ObjectId(user["_id"])
             }
+        # use insert one command to insert the dictionary form into the
+        # database
         mongo.db.recipes.insert_one(new_recipe)
         flash("Recipe Successfully Added!")
         return redirect(url_for("get_recipes"))
@@ -170,9 +186,11 @@ def add_recipe():
     return render_template("add_recipe.html", cuisines=cuisines)
 
 
+# edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
+        # find user with same session
         user = mongo.db.users.find_one({"username": session["user"]})
         update_recipe = {
             "recipe_name": request.form.get("recipe_name"),
@@ -185,7 +203,7 @@ def edit_recipe(recipe_id):
             "created_by": session["user"],
             "user_id": ObjectId(user["_id"])
         }
-
+        # retrieves users id and updates recipes accordingly using the form
         mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, update_recipe)
         flash("Recipe Successfully Updated")
 
@@ -195,6 +213,7 @@ def edit_recipe(recipe_id):
                            cuisines=cuisines)
 
 
+# remove current recipe by id
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
@@ -202,8 +221,10 @@ def delete_recipe(recipe_id):
     return redirect(url_for("get_recipes"))
 
 
+# get list of cuisines
 @app.route("/get_cuisines")
 def get_cuisines():
+    # find and sort them alphebetically
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_name", 1))
     return render_template("cuisines.html", cuisines=cuisines)
 
@@ -214,6 +235,7 @@ def add_cuisine():
         add_cuisine = {
             "cuisine_name": request.form.get("cuisine_name")
         }
+        # insert one command to add new cuisine name
         mongo.db.cuisines.insert_one(add_cuisine)
         flash("New Cuisine Added")
         return redirect(url_for("get_cuisines"))
@@ -221,12 +243,14 @@ def add_cuisine():
     return render_template("add_cuisine.html")
 
 
+# edit current cuisine
 @app.route("/edit_cuisine/<cuisine_id>", methods=["GET", "POST"])
 def edit_cuisine(cuisine_id):
     if request.method == "POST":
         edit_cuisine = {
             "cuisine_name": request.form.get("cuisine_name")
         }
+        # update with form text field
         mongo.db.cuisines.update({"_id": ObjectId(cuisine_id)}, edit_cuisine)
         flash("Cuisine Successfully Updated")
         return redirect(url_for("get_cuisines"))
@@ -235,6 +259,7 @@ def edit_cuisine(cuisine_id):
     return render_template("edit_cuisine.html", cuisine=cuisine)
 
 
+# remove cuisine by id
 @app.route("/delete_cuisine/<cuisine_id>")
 def delete_cuisine(cuisine_id):
     mongo.db.cuisines.remove({"_id": ObjectId(cuisine_id)})
@@ -245,4 +270,4 @@ def delete_cuisine(cuisine_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
