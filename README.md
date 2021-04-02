@@ -13,8 +13,8 @@ searched, viewed, added, deleted and updated.
 
 ## Target Audience
 
-- The website is aimed at people who are foodies who want I browse specific recipes by a cuisine. They can also be inspired
-  to to add new recipes to the site and save them to their profile. 
+- The website is aimed at people who are foodies who want to browse specific recipes by a cuisine. They can also be inspired
+  to add new recipes to the site and save them to their profile. 
 
 ## Data Details for Admin (test purposes for examiner to use)
 
