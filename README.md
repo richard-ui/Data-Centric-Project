@@ -104,6 +104,11 @@ searched, viewed, added, deleted and updated.
 | Delete recipe   | Users are able to delete their own recipes. As above, this can only be done with the user's own recipes.  |
 | Search function   | The users are able to search the recipe database by ingredient and recipe name. This function is available whether a user is logged in/registered or not.  |
 
+# Features left to implement
+| Feature  | Details |
+| ------------- | ------------- |
+| Pagination  | I would of liked the recipes to be listed by (5) records of recipes per page, but unfortunately it became more confusing and unfortunately I ran out of time.   |
+
 # Bugs
 
 - I defined an upload method in my python code to generate an upload for the image. However after displaying to Heroku the images for each recipe would not display
