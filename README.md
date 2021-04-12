@@ -289,9 +289,9 @@ Forking the repsoitory means we are making a copy of the original version to edi
 # Credits
 ## Code
 - Slack was used to gather information about what jQuery code to use for implementing an image upload function() to the Cloudinary server.
-- Also used code from Materialize as a way to design the form.
 - W3schools was a helpful website for searching how to validate forms with attributes.
-- For the Password strength generator, I used snippets of code from a Youtube video and made it my own. This was from 'Web dev simplified's' channel, that shows how to implement a password feature using JavaScript.
+- For the Password strength generator, I used snippets of code from a Youtube video and made it my own. This was from ['Web dev simplified's'](https://www.youtube.com/watch?v=7-1VZ2wF8pw) channel, that shows how to implement a password feature using JavaScript.
+- Stack overflow to help with the User Authentication providing a decorator function to Validate a people into a page if they want to access a page from the url. Here at [Stack Overflow](https://stackoverflow.com/questions/65434221/prevent-users-from-directly-accessing-url-and-redirect-to-login-if-not-logged-in)
 
 # Acknowledgements
 - Holly-ford Github. It Provided me help to submit an array of ingredients/steps to the database using jQuery.

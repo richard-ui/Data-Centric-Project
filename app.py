@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -18,6 +19,27 @@ app.secret_key = os.environ.get("SECRET_KEY")
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 mongo = PyMongo(app)
+
+
+# decorator
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+
+        #  user authentication set in place for more security
+
+        if session.get('user'):
+            existing_user = mongo.db.users.find_one(
+                {"username": session['user']})
+            if not existing_user["is_admin"]:
+                return redirect(url_for("login"))
+        else:
+            return redirect(url_for("login"))
+
+        return f(*args, **kwargs)
+    return decorated_function
+
 
 # routes
 
@@ -85,8 +107,8 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
-        # if passed, username, password will be inserted it aswell as inserting
-        # is_admin is set to false as they wont have access to admin rights
+        # if passed, username, password will be inserted, aswell as inserting
+        # is_admin to be set to false as they wont have access to admin rights
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -223,6 +245,7 @@ def delete_recipe(recipe_id):
 
 # get list of cuisines
 @app.route("/get_cuisines")
+@login_required
 def get_cuisines():
     # find and sort them alphebetically
     cuisines = list(mongo.db.cuisines.find().sort("cuisine_name", 1))
@@ -230,6 +253,7 @@ def get_cuisines():
 
 
 @app.route("/add_cuisine", methods=["GET", "POST"])
+@login_required
 def add_cuisine():
     if request.method == "POST":
         add_cuisine = {
@@ -245,6 +269,7 @@ def add_cuisine():
 
 # edit current cuisine
 @app.route("/edit_cuisine/<cuisine_id>", methods=["GET", "POST"])
+@login_required
 def edit_cuisine(cuisine_id):
     if request.method == "POST":
         edit_cuisine = {
