@@ -63,6 +63,14 @@ def get_recipes():
                            dropdown_recipes=recipes, cuisines=cuisines)
 
 
+@app.route("/get_recipe/<recipe_id>")
+def get_recipe(recipe_id):
+   
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+            
+    return render_template("recipe.html", recipe=recipe)
+
+
 # allows user to search by textbox
 @app.route("/search_recipe", methods=["GET", "POST"])
 def search_recipe():
@@ -295,6 +303,6 @@ def delete_cuisine(cuisine_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=False)
+            debug=True)
 
 # switch debug to false on deployment
