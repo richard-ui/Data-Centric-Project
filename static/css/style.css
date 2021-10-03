@@ -69,6 +69,21 @@ form#loginform, form#registerform{
     margin-top: 8px;
 }
 
+.view-recipe-container{
+    position: relative;
+    text-align: center;
+    color: #000;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    color: #000;
+  }
+
 /* -- Modal -- */
 
 .modal {

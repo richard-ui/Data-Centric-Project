@@ -66,16 +66,25 @@
     {% if recipes|length > 0 %}
          {% for recipe in recipes %}
          
-         <div class="card-panel col s12 lighten-2">
-             <form class="form-fieldset">
-                <h3>{{ recipe.recipe_name }}</h3>
-                <a href="{{ url_for('get_recipe', recipe_id=recipe._id) }}" class="waves-effect waves-light btn-small button-style">View Recipe</a>
+         <div class="card-panel col s12 grey lighten-2">
+            <form class="form-fieldset">
+                <fieldset>
+                    <legend>{{ recipe.recipe_name }}</legend>
+
+                    <div class="col s12 m4 view-recipe-container">
+                        <a href="{{ url_for('get_recipe', recipe_id=recipe._id) }}"><img id="imgdata" src="https://previews.123rf.com/images/mspoint/mspoint1905/mspoint190500003/122414161-wide-horizontal-healthy-eating-background-copy-space-variety-of-decorative-vegetables-with-grain-tex.jpg" alt="{{ recipe.recipe_name }}"
+                            style="width: 400px; height: 100px;"  class="responsive-img"></a> 
+                        <a href="{{ url_for('get_recipe', recipe_id=recipe._id) }}" class="centered">View Recipe</a>   
+                    </div>
+                
+                </fieldset>
             </form>
-        </div>
+         </div>
             
             {% endfor %}
             
         {% else %}
+
             <h3 class="red-text text-darken-4 center-align">No recipes found!</h3>
             
         {% endif %}
